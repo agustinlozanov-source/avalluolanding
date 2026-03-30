@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>avalluo — Avalúos con Tecnología Propia</title>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --teal:#1f9095;
+  --blue:#2d43b3;
+  --teal-light:rgba(31,144,149,0.12);
+  --blue-light:rgba(45,67,179,0.12);
+  --grad:linear-gradient(135deg,#1f9095,#2d43b3);
+  --grad-text:linear-gradient(135deg,#1f9095 0%,#2d43b3 100%);
+  --ink:#0D0D14;
+  --ink2:#1a1a2e;
+  --gray:#5a6070;
+  --gray2:#9099aa;
+  --off:#f7f8fc;
+  --white:#ffffff;
+  --border:rgba(0,0,0,0.07);
+  --border2:rgba(31,144,149,0.2);
+  --shadow:0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg:0 16px 48px rgba(0,0,0,0.12);
+  --r:14px;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Ubuntu',system-ui,sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ─── UTILS ─── */
+.grad-text{background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.container{max-width:1200px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.container{padding:0 24px}}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;background:rgba(255,255,255,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:32px;display:block}
+.nav-logo-text{font-size:22px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--grad);color:var(--white)!important;padding:10px 22px;border-radius:8px;font-weight:700!important;font-size:14px!important;transition:opacity .2s!important}
+.nav-cta:hover{opacity:.88}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:68px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#f0fdfd 0%,#eef1fc 60%,#f7f8ff 100%);z-index:0}
+.hero-blob{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(31,144,149,0.08) 0%,transparent 70%);top:-200px;right:-200px;z-index:0}
+.hero-blob2{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(45,67,179,0.06) 0%,transparent 70%);bottom:-100px;left:-100px;z-index:0}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:80px 48px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--teal-light);border:1px solid var(--border2);color:var(--teal);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:28px}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.hero-h1{font-size:clamp(42px,5vw,72px);font-weight:700;line-height:1.05;letter-spacing:-0.03em;margin-bottom:24px}
+.hero-sub{font-size:18px;line-height:1.7;color:var(--gray);max-width:500px;margin-bottom:40px;font-weight:400}
+.hero-actions{display:flex;align-items:center;gap:16px;margin-bottom:48px;flex-wrap:wrap}
+.btn-grad{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:var(--white);padding:16px 32px;border-radius:10px;font-size:16px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .25s;font-family:'Ubuntu',sans-serif}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(31,144,149,0.35)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:var(--ink);padding:16px 28px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;border:1.5px solid var(--border);background:rgba(255,255,255,0.8);cursor:pointer;transition:all .2s;font-family:'Ubuntu',sans-serif}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.hero-trust{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--gray2)}
+.trust-dot{width:4px;height:4px;border-radius:50%;background:var(--gray2)}
+.hero-trust span{font-weight:500}
+
+/* HERO VISUAL */
+.hero-right{position:relative;display:flex;justify-content:center;align-items:flex-end}
+.hero-mascot{width:100%;max-width:480px;position:relative;z-index:2;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.hero-mascot img{width:100%;display:block}
+.hero-stat-float{position:absolute;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow-lg);z-index:3}
+.hero-stat-float.s1{top:20px;left:-20px}
+.hero-stat-float.s2{bottom:40px;right:-20px}
+.stat-val{font-size:22px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-lbl{font-size:11px;color:var(--gray2);margin-top:3px;font-weight:500}
+
+/* ─── STRIP NUMBERS ─── */
+.strip{background:var(--ink2);padding:40px 0}
+.strip-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08)}
+.strip-item{padding:28px 32px;background:var(--ink2)}
+.strip-num{font-size:36px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px}
+.strip-lbl{font-size:13px;color:rgba(255,255,255,0.5);font-weight:400;line-height:1.4}
+
+/* ─── SECTION BASE ─── */
+.section{padding:96px 0}
+.section-off{padding:96px 0;background:var(--off)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--grad);border-radius:1px;display:block}
+.section-h2{font-size:clamp(32px,3.5vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.75;max-width:580px}
+
+/* ─── DIFERENCIADORES ─── */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.diff-card{background:var(--white);padding:36px 32px;transition:background .2s;position:relative;overflow:hidden}
+.diff-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.diff-card:hover{background:linear-gradient(160deg,rgba(31,144,149,0.03),rgba(45,67,179,0.04))}
+.diff-card:hover::after{transform:scaleX(1)}
+.diff-icon{width:48px;height:48px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;flex-shrink:0}
+.diff-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em}
+.diff-desc{font-size:14px;color:var(--gray);line-height:1.7}
+.diff-highlight{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 12px;border-radius:100px}
+
+/* ─── PARA QUIÉN ─── */
+.clients-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.client-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:32px;cursor:pointer;transition:all .25s;position:relative}
+.client-card:hover{border-color:transparent;box-shadow:0 8px 32px rgba(31,144,149,0.15),0 0 0 1.5px var(--teal)}
+.client-card:hover .client-cta{opacity:1;transform:translateY(0)}
+.client-emoji{font-size:36px;margin-bottom:16px;display:block}
+.client-title{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.client-desc{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px}
+.client-tags{display:flex;flex-wrap:wrap;gap:6px}
+.client-tag{font-size:11px;font-weight:500;color:var(--blue);background:var(--blue-light);padding:3px 10px;border-radius:100px}
+.client-cta{position:absolute;bottom:20px;right:20px;font-size:12px;font-weight:700;color:var(--teal);opacity:0;transform:translateY(4px);transition:all .25s}
+
+/* ─── PROCESO ─── */
+.proceso-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:56px}
+.proceso-steps{display:flex;flex-direction:column;gap:0}
+.proceso-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(0,0,0,0.05);cursor:pointer;transition:all .2s}
+.proceso-step:last-child{border-bottom:none}
+.proceso-step:hover .ps-num{background:var(--grad)}
+.ps-num{width:36px;height:36px;border-radius:50%;background:var(--teal-light);border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:2px;transition:all .3s}
+.proceso-step:hover .ps-num{color:white}
+.ps-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.ps-desc{font-size:13px;color:var(--gray);line-height:1.65}
+.ps-badge{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:3px 10px;border-radius:100px}
+.proceso-visual{background:var(--white);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.pv-header{background:var(--ink2);padding:18px 22px;display:flex;align-items:center;gap:10px}
+.pv-dots{display:flex;gap:6px}
+.pv-dot{width:10px;height:10px;border-radius:50%}
+.pv-dot.r{background:#FF5F57}.pv-dot.y{background:#FEBC2E}.pv-dot.g{background:#28C840}
+.pv-title{font-size:12px;font-weight:500;color:rgba(255,255,255,0.5);margin-left:8px}
+.pv-body{padding:24px}
+.pv-project{background:var(--off);border-radius:10px;padding:16px;margin-bottom:16px}
+.pv-project-name{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.pv-project-meta{font-size:11px;color:var(--gray2)}
+.pv-badge-green{display:inline-block;background:rgba(0,180,100,0.1);color:#00a855;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;margin-left:8px}
+.pv-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.pv-kpi{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.pv-kpi-val{font-size:18px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pv-kpi-lbl{font-size:10px;color:var(--gray2);margin-top:2px}
+.pv-track-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray2);margin-bottom:12px}
+.pv-track-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.pv-track-label{font-size:11px;color:var(--gray);width:110px;flex-shrink:0}
+.pv-track-bar-bg{flex:1;height:6px;background:var(--off);border-radius:3px;overflow:hidden}
+.pv-track-bar{height:100%;border-radius:3px;background:var(--grad)}
+.pv-track-pct{font-size:11px;font-weight:700;color:var(--ink);width:36px;text-align:right}
+.pv-status{background:rgba(31,144,149,0.06);border:1px solid rgba(31,144,149,0.15);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--teal);font-weight:600;display:flex;align-items:center;gap:8px}
+.pv-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal);display:block;flex-shrink:0}
+
+/* ─── TECNOLOGÍA ─── */
+.tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:56px}
+.tech-card{border-radius:var(--r);padding:36px;border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
+.tech-card::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:var(--grad);opacity:0;transition:opacity .3s;z-index:0}
+.tech-card:hover::before{opacity:0.03}
+.tech-card>*{position:relative;z-index:1}
+.tech-card:hover{border-color:rgba(31,144,149,0.4);box-shadow:0 8px 32px rgba(31,144,149,0.1)}
+.tech-num{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.tech-title{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-0.02em;line-height:1.2}
+.tech-desc{font-size:14px;color:var(--gray);line-height:1.7}
+.tech-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tech-pill{font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-light);padding:4px 12px;border-radius:100px}
+
+/* ─── VALUADORES ─── */
+.valuadores-section{background:var(--ink2);padding:96px 0;position:relative;overflow:hidden}
+.valuadores-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(31,144,149,0.12) 0%,transparent 60%)}
+.val-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.val-benefits{display:flex;flex-direction:column;gap:20px;margin-top:40px}
+.val-benefit{display:flex;gap:16px;align-items:flex-start}
+.val-benefit-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,rgba(31,144,149,0.25),rgba(45,67,179,0.25));border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.val-benefit-title{font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px}
+.val-benefit-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
+.val-form{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:36px}
+.val-form-title{font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px}
+.val-form-sub{font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:28px;line-height:1.5}
+.val-input{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 16px;font-size:14px;color:var(--white);font-family:'Ubuntu',sans-serif;margin-bottom:12px;outline:none;transition:border-color .2s}
+.val-input::placeholder{color:rgba(255,255,255,0.25)}
+.val-input:focus{border-color:var(--teal)}
+.val-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center}
+.btn-grad-full{width:100%;background:var(--grad);color:var(--white);padding:14px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Ubuntu',sans-serif;transition:all .2s;margin-top:4px}
+.btn-grad-full:hover{opacity:.88;transform:translateY(-1px)}
+.val-note{font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:12px}
+
+/* ─── HOOKS / TESTIMONIOS ─── */
+.hooks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.hook-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all .25s}
+.hook-card:hover{box-shadow:0 8px 32px rgba(31,144,149,0.12);border-color:rgba(31,144,149,0.3)}
+.hook-quote{font-size:15px;line-height:1.7;color:var(--ink);margin-bottom:20px;font-style:italic}
+.hook-quote::before{content:'"';font-size:32px;color:var(--teal);line-height:0;vertical-align:-10px;margin-right:4px;font-style:normal}
+.hook-author{display:flex;align-items:center;gap:12px}
+.hook-avatar{width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;font-weight:700}
+.hook-name{font-size:14px;font-weight:700;color:var(--ink)}
+.hook-role{font-size:12px;color:var(--gray2)}
+
+/* ─── CTA FINAL ─── */
+.cta-section{padding:96px 0;background:linear-gradient(160deg,#0a1628 0%,#0d1f2d 40%,#091520 100%);position:relative;overflow:hidden}
+.cta-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(31,144,149,0.15) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-inner{position:relative;z-index:1;text-align:center;max-width:720px;margin:0 auto;padding:0 48px}
+.cta-h2{font-size:clamp(36px,4vw,60px);font-weight:700;color:var(--white);letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px}
+.cta-sub{font-size:17px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:48px}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.cta-contact{display:flex;align-items:center;gap:24px;justify-content:center;flex-wrap:wrap}
+.cta-contact-item{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.4)}
+.cta-contact-item a{color:rgba(255,255,255,0.7);text-decoration:none;transition:color .2s}
+.cta-contact-item a:hover{color:var(--white)}
+.cta-contact-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.2)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 48px}
+.footer-logo-text{font-size:18px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.footer-links{display:flex;gap:20px;list-style:none}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,0.7)}
+
+/* ─── ANIMACIONES ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.animate-float{animation:float 4s ease-in-out infinite}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:60px 24px}
+  .hero-right{display:none}
+  .diff-grid{grid-template-columns:1fr}
+  .clients-grid{grid-template-columns:1fr}
+  .proceso-wrap{grid-template-columns:1fr}
+  .tech-grid{grid-template-columns:1fr}
+  .val-grid{grid-template-columns:1fr}
+  .hooks-grid{grid-template-columns:1fr}
+  .strip-inner{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <!-- Reemplaza con tu logo: <img src="avalluo_logo.png" alt="avalluo"> -->
+      <span class="nav-logo-text">avalluo</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#diferenciadores">Tecnología</a></li>
+      <li><a href="#para-quien">Servicios</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#valuadores">Valuadores</a></li>
+      <li><a href="#contacto" class="nav-cta">Solicitar Avalúo</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag fade-up">Plataforma Nacional de Avalúos</div>
+      <h1 class="hero-h1 fade-up delay-1">
+        Conoce el valor<br>real de lo que<br><span class="grad-text">tienes en tus manos.</span>
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        Tecnología, metodología y red de valuadores certificados. Todo en una plataforma diseñada para darte certeza, velocidad y trazabilidad en cada avalúo.
+      </p>
+      <div class="hero-actions fade-up delay-3">
+        <a href="#contacto" class="btn-grad">
+          Solicitar un avalúo
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#proceso" class="btn-ghost">¿Cómo funciona?</a>
+      </div>
+      <div class="hero-trust fade-up delay-4">
+        <span>Red nacional de valuadores certificados</span>
+        <div class="trust-dot"></div>
+        <span>Tecnología 100% propia</span>
+        <div class="trust-dot"></div>
+        <span>Base de datos exclusiva</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-mascot animate-float">
+        <!-- Reemplaza con imagen de mascota: <img src="mascota.png" alt="avalluo"> -->
+        <img src="Gemini_Generated_Image_1qom801qom801qom__1_.png" alt="avalluo mascot">
+      </div>
+      <div class="hero-stat-float s1">
+        <div class="stat-val">+12,000</div>
+        <div class="stat-lbl">activos valuados</div>
+      </div>
+      <div class="hero-stat-float s2">
+        <div class="stat-val">32 estados</div>
+        <div class="stat-lbl">cobertura nacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner container" style="max-width:100%;padding:0">
+    <div class="strip-item">
+      <div class="strip-num">+90K</div>
+      <div class="strip-lbl">activos procesables<br>por proyecto</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">–70%</div>
+      <div class="strip-lbl">reducción en tiempo<br>vs método tradicional</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">32</div>
+      <div class="strip-lbl">estados con valuadores<br>certificados activos</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">NMX</div>
+      <div class="strip-lbl">metodología propia<br>bajo norma Z-013</div>
+    </div>
+  </div>
+</div>
+
+<!-- DIFERENCIADORES -->
+<section class="section" id="diferenciadores">
+  <div class="container">
+    <div class="eyebrow">Por qué avalluo</div>
+    <h2 class="section-h2">Tres pilares que nos <span class="grad-text">hacen únicos</span></h2>
+    <p class="section-sub">No somos un despacho tradicional. Somos una plataforma tecnológica que opera con la precisión de un sistema y la confianza de un equipo certificado.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-icon">🖥️</div>
+        <div class="diff-title">Tecnología Propia</div>
+        <div class="diff-desc">Nuestra plataforma digital gestiona todo el proceso de avalúo: importación de inventarios, categorización con IA, inspección guiada en campo y generación del dictamen. Desarrollada 100% internamente para el mercado mexicano.</div>
+        <span class="diff-highlight">Plataforma exclusiva avalluo</span>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">🗄️</div>
+        <div class="diff-title">Base de Datos Propia</div>
+        <div class="diff-desc">Años de avalúos reales generan nuestra base de datos de valores de mercado. Precios actualizados de maquinaria industrial, embarcaciones y aeronaves que ningún competidor tiene. Tu dictamen se apoya en inteligencia real, no en estimaciones.</div>
+        <span class="diff-highlight">Datos exclusivos del mercado mexicano</span>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">📐</div>
+        <div class="diff-title">Metodología Propia</div>
+        <div class="diff-desc">Desarrollamos nuestra propia metodología de valuación, documentada y auditada bajo la norma NMX-Z-013. Cada factor —físico, funcional y de obsolescencia— se calcula con criterios claros, trazables y reproducibles.</div>
+        <span class="diff-highlight">NMX-Z-013 · Trazabilidad total</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="section-off" id="para-quien">
+  <div class="container">
+    <div class="eyebrow">¿Quién nos necesita?</div>
+    <h2 class="section-h2">Tu activo tiene valor. <span class="grad-text">Descúbrelo.</span></h2>
+    <p class="section-sub">Desde una empresa con maquinaria parada hasta un fondo buscando certeza antes de invertir. Si hay un activo de por medio, avalluo tiene la solución.</p>
+    <div class="clients-grid">
+      <div class="client-card">
+        <span class="client-emoji">🏭</span>
+        <div class="client-title">Empresas Industriales</div>
+        <div class="client-desc">Necesitas conocer el valor real de tu maquinaria para revaluación contable, crédito, venta o concurso mercantil. Tenemos experiencia con inventarios de miles de ítems.</div>
+        <div class="client-tags">
+          <span class="client-tag">Maquinaria pesada</span>
+          <span class="client-tag">Líneas de producción</span>
+          <span class="client-tag">Concurso mercantil</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji">⚓</span>
+        <div class="client-title">Embarcaciones y Marinas</div>
+        <div class="client-desc">Avalúos especializados de embarcaciones comerciales, de pesca o recreativas. Valoramos con acceso a bases de datos internacionales de mercado secundario.</div>
+        <div class="client-tags">
+          <span class="client-tag">Flota comercial</span>
+          <span class="client-tag">Embarcaciones de pesca</span>
+          <span class="client-tag">Activos marítimos</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji">✈️</span>
+        <div class="client-title">Aeronaves</div>
+        <div class="client-desc">Valuación de aeronaves privadas, comerciales y de carga. Acceso a precios internacionales (Aircraft Bluebook, VREF) y valuadores especializados en aviación.</div>
+        <div class="client-tags">
+          <span class="client-tag">Aviación privada</span>
+          <span class="client-tag">Flota comercial</span>
+          <span class="client-tag">Helicópteros</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji">🏦</span>
+        <div class="client-title">Instituciones Financieras</div>
+        <div class="client-desc">Fondos de inversión, bancos y SOFOMES que necesitan dictámenes confiables para tomar decisiones de crédito o inversión sobre activos productivos.</div>
+        <div class="client-tags">
+          <span class="client-tag">Due diligence</span>
+          <span class="client-tag">Garantías</span>
+          <span class="client-tag">Portafolios</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji">⚖️</span>
+        <div class="client-title">Procesos Legales</div>
+        <div class="client-desc">Síndicos, liquidadores y despachos jurídicos que requieren avalúos con validez legal para concursos mercantiles, divorcios, herencias o litigios.</div>
+        <div class="client-tags">
+          <span class="client-tag">Concurso mercantil</span>
+          <span class="client-tag">Liquidación de activos</span>
+          <span class="client-tag">Litigio</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji">🏗️</span>
+        <div class="client-title">Maquiladoras y manufactura</div>
+        <div class="client-desc">Inventarios complejos de plantas de manufactura, especialmente en la frontera norte. Nuestra plataforma procesa miles de ítems con precisión y en tiempo récord.</div>
+        <div class="client-tags">
+          <span class="client-tag">Frontera norte</span>
+          <span class="client-tag">T-MEC / nearshoring</span>
+          <span class="client-tag">Gran escala</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section" id="proceso">
+  <div class="container">
+    <div class="eyebrow">Cómo funciona</div>
+    <h2 class="section-h2">Trazabilidad total,<br><span class="grad-text">de inicio a fin.</span></h2>
+    <p class="section-sub">Cada etapa queda registrada en nuestra plataforma. Sabes en qué paso está tu avalúo en todo momento.</p>
+    <div class="proceso-wrap">
+      <div class="proceso-steps">
+        <div class="proceso-step">
+          <div class="ps-num">01</div>
+          <div>
+            <div class="ps-title">Ingesta del inventario</div>
+            <div class="ps-desc">Nos compartes el inventario en cualquier formato. Nuestra IA normaliza columnas, limpia datos y categoriza automáticamente — sin importar si son 50 o 50,000 ítems.</div>
+            <span class="ps-badge">Cualquier Excel o formato</span>
+          </div>
+        </div>
+        <div class="proceso-step">
+          <div class="ps-num">02</div>
+          <div>
+            <div class="ps-title">Análisis Pareto y VNR</div>
+            <div class="ps-desc">La plataforma identifica qué activos concentran el 80% del valor. Consulta nuestra base de datos propia de valores de mercado para calcular el Valor Neto de Reposición de cada categoría.</div>
+            <span class="ps-badge">Base de datos exclusiva</span>
+          </div>
+        </div>
+        <div class="proceso-step">
+          <div class="ps-num">03</div>
+          <div>
+            <div class="ps-title">Inspección en campo</div>
+            <div class="ps-desc">Nuestros valuadores certificados inspeccionan la muestra estadísticamente representativa usando nuestra app propia. FC y FO calculados con guía de IA en cada ítem.</div>
+            <span class="ps-badge">Red nacional certificada</span>
+          </div>
+        </div>
+        <div class="proceso-step">
+          <div class="ps-num">04</div>
+          <div>
+            <div class="ps-title">Dictamen y entrega</div>
+            <div class="ps-desc">Generamos el dictamen completo con metodología documentada, respaldado por valuadores certificados en cada categoría. Entrega formal con toda la trazabilidad del proceso.</div>
+            <span class="ps-badge">Validez legal · NMX-Z-013</span>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-visual">
+        <div class="pv-header">
+          <div class="pv-dots"><div class="pv-dot r"></div><div class="pv-dot y"></div><div class="pv-dot g"></div></div>
+          <div class="pv-title">avalluo — Panel de Proyecto</div>
+        </div>
+        <div class="pv-body">
+          <div class="pv-project">
+            <div class="pv-project-name">Maquiladora Frontera Norte <span class="pv-badge-green">En proceso</span></div>
+            <div class="pv-project-meta">Concurso Mercantil · Monterrey, NL · 1,951 ítems</div>
+          </div>
+          <div class="pv-kpis">
+            <div class="pv-kpi"><div class="pv-kpi-val">$13.6M</div><div class="pv-kpi-lbl">VNR Total USD</div></div>
+            <div class="pv-kpi"><div class="pv-kpi-val">523</div><div class="pv-kpi-lbl">A campo</div></div>
+            <div class="pv-kpi"><div class="pv-kpi-val">20</div><div class="pv-kpi-lbl">Categorías</div></div>
+          </div>
+          <div class="pv-track-title">Avance del proyecto</div>
+          <div class="pv-track-row"><span class="pv-track-label">Ingesta</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:100%"></div></div><span class="pv-track-pct">100%</span></div>
+          <div class="pv-track-row"><span class="pv-track-label">Análisis VNR</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:100%"></div></div><span class="pv-track-pct">100%</span></div>
+          <div class="pv-track-row"><span class="pv-track-label">Campo</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:64%"></div></div><span class="pv-track-pct">64%</span></div>
+          <div class="pv-track-row"><span class="pv-track-label">Dictamen</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:0%"></div></div><span class="pv-track-pct">–</span></div>
+          <div class="pv-status">Valuador J. Ramírez · 178 de 523 ítems inspeccionados hoy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECNOLOGÍA DETALLE -->
+<section class="section-off" id="tecnologia">
+  <div class="container">
+    <div class="eyebrow">Tecnología avalluo</div>
+    <h2 class="section-h2">La plataforma detrás<br>de <span class="grad-text">cada dictamen.</span></h2>
+    <p class="section-sub">No usamos hojas de cálculo ni PDFs genéricos. Cada paso del avalúo vive en nuestro sistema, diseñado para escalar sin perder precisión.</p>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-num">Motor 01</div>
+        <div class="tech-title">Ingesta y categorización inteligente</div>
+        <div class="tech-desc">Cualquier Excel, sin importar la estructura. La IA detecta columnas, limpia datos y categoriza cada ítem en segundos — hasta 90,000 activos por proyecto. Más de 20 categorías industriales con subcategorías específicas.</div>
+        <div class="tech-pills"><span class="tech-pill">IA propia</span><span class="tech-pill">&lt;30 seg / 1,000 ítems</span><span class="tech-pill">Cualquier formato</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">Motor 02</div>
+        <div class="tech-title">Análisis Pareto y base de datos VNR</div>
+        <div class="tech-desc">Identificamos automáticamente qué categorías representan el 80% del valor. Consultamos nuestra base de datos propia de precios de mercado secundario para calcular el VNR de cada categoría con datos reales del mercado mexicano e internacional.</div>
+        <div class="tech-pills"><span class="tech-pill">Base de datos exclusiva</span><span class="tech-pill">Pareto automático</span><span class="tech-pill">IronPlanet · Ritchie Bros</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">Motor 03</div>
+        <div class="tech-title">App de campo con IA visual</div>
+        <div class="tech-desc">Nuestros valuadores usan una app propia que los guía ítem por ítem. La IA visual sugiere el Factor de Condición Física basándose en fotos del activo. Funciona sin señal y sincroniza al regresar. Inspección 5x más rápida que el método tradicional.</div>
+        <div class="tech-pills"><span class="tech-pill">Offline-first</span><span class="tech-pill">IA visual</span><span class="tech-pill">45 seg / ítem</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">Motor 04</div>
+        <div class="tech-title">Motor FC/FO paramétrico y generación del dictamen</div>
+        <div class="tech-desc">Para ítems de bajo valor individual: fecha de compra, vida útil SAT, condición ambiental e intensidad de uso → FC calculado automáticamente. El dictamen final se genera con toda la metodología documentada y es verificable ítem a ítem.</div>
+        <div class="tech-pills"><span class="tech-pill">NMX-Z-013</span><span class="tech-pill">Trazabilidad total</span><span class="tech-pill">FC/FO auditables</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOOKS -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Lo que dicen nuestros clientes</div>
+    <h2 class="section-h2">Certeza que <span class="grad-text">transforma decisiones.</span></h2>
+    <div class="hooks-grid">
+      <div class="hook-card">
+        <div class="hook-quote">Nunca pensé que un inventario de 2,000 activos se pudiera valuar con ese nivel de detalle y en ese tiempo. El dictamen fue aceptado sin objeciones por el juez.</div>
+        <div class="hook-author">
+          <div class="hook-avatar">R</div>
+          <div>
+            <div class="hook-name">Ricardo Morales</div>
+            <div class="hook-role">Síndico · Concurso mercantil · Monterrey</div>
+          </div>
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-quote">La trazabilidad de la plataforma nos dio la tranquilidad que necesitábamos. Podíamos ver el avance en tiempo real y el dictamen final tenía todo el respaldo metodológico.</div>
+        <div class="hook-author">
+          <div class="hook-avatar">A</div>
+          <div>
+            <div class="hook-name">Alejandra Vega</div>
+            <div class="hook-role">Directora Financiera · Maquiladora · Juárez</div>
+          </div>
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-quote">Buscábamos un avalúo de nuestra flota pesquera con datos reales de mercado, no valores de catálogo. avalluo fue el único que pudo entregarlo con esa profundidad.</div>
+        <div class="hook-author">
+          <div class="hook-avatar">C</div>
+          <div>
+            <div class="hook-name">Carlos Espinoza</div>
+            <div class="hook-role">Director · Grupo pesquero · Ensenada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUADORES -->
+<section class="valuadores-section" id="valuadores">
+  <div class="valuadores-bg"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="val-grid">
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,0.5)">Red profesional</div>
+        <h2 class="section-h2" style="color:var(--white)">¿Eres valuador certificado? <span class="grad-text">Trabaja con nosotros.</span></h2>
+        <p class="section-sub" style="color:rgba(255,255,255,0.45)">Buscamos profesionales certificados en toda la república para formar parte de la red de valuadores más avanzada tecnológicamente de México.</p>
+        <div class="val-benefits">
+          <div class="val-benefit">
+            <div class="val-benefit-icon">🛠️</div>
+            <div>
+              <div class="val-benefit-title">Tecnología de vanguardia en tu bolsillo</div>
+              <div class="val-benefit-desc">App propia que te guía ítem a ítem. IA visual que sugiere el FC basada en fotos. Ruta optimizada en planta. Sincronización automática.</div>
+            </div>
+          </div>
+          <div class="val-benefit">
+            <div class="val-benefit-icon">📊</div>
+            <div>
+              <div class="val-benefit-title">Acceso a nuestra base de datos exclusiva</div>
+              <div class="val-benefit-desc">Trabaja con precios reales de mercado que ningún valuador independiente tiene. Dictámenes más sólidos, menos tiempo de investigación.</div>
+            </div>
+          </div>
+          <div class="val-benefit">
+            <div class="val-benefit-icon">🌐</div>
+            <div>
+              <div class="val-benefit-title">Proyectos en todo México</div>
+              <div class="val-benefit-desc">Asignamos proyectos por tu ubicación y especialidad. Sin prospección. Tú llegas a inspeccionar y nosotros cerramos el proceso.</div>
+            </div>
+          </div>
+          <div class="val-benefit">
+            <div class="val-benefit-icon">💼</div>
+            <div>
+              <div class="val-benefit-title">Respaldo metodológico total</div>
+              <div class="val-benefit-desc">Nuestra metodología documentada respalda cada dictamen. Menos exposición legal, más confianza en cada entrega.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="val-form">
+        <div class="val-form-title">Únete a la red avalluo</div>
+        <div class="val-form-sub">Cuéntanos de tu perfil y te contactamos en 48 horas para una entrevista.</div>
+        <input class="val-input" type="text" placeholder="Nombre completo">
+        <input class="val-input" type="email" placeholder="Correo electrónico">
+        <input class="val-input" type="tel" placeholder="WhatsApp (con lada)">
+        <select class="val-input val-select" style="color:rgba(255,255,255,0.6)">
+          <option value="" style="background:#1a1a2e">Especialidad principal</option>
+          <option style="background:#1a1a2e">Maquinaria industrial</option>
+          <option style="background:#1a1a2e">Embarcaciones</option>
+          <option style="background:#1a1a2e">Aeronaves</option>
+          <option style="background:#1a1a2e">Equipo de cómputo</option>
+          <option style="background:#1a1a2e">Inmuebles</option>
+          <option style="background:#1a1a2e">General</option>
+        </select>
+        <input class="val-input" type="text" placeholder="Estado donde operas">
+        <button class="btn-grad-full" onclick="window.location.href='mailto:atencion@avalluo.com'">Enviar solicitud</button>
+        <div class="val-note">También puedes escribirnos directamente a atencion@avalluo.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="eyebrow" style="color:rgba(255,255,255,0.4);justify-content:center">El siguiente paso es tuyo</div>
+    <h2 class="cta-h2">¿Tienes activos que<br>necesitas <span class="grad-text">valuar?</span></h2>
+    <p class="cta-sub">
+      Cuéntanos qué tienes — maquinaria, embarcaciones, aeronaves, inventarios completos —<br>y en menos de 24 horas te decimos exactamente cómo podemos ayudarte.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:atencion@avalluo.com" class="btn-grad" style="font-size:16px;padding:18px 36px">
+        Contactar a avalluo
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://wa.me/521XXXXXXXXXX" class="btn-ghost" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15);background:transparent">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="cta-contact">
+      <div class="cta-contact-item">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:atencion@avalluo.com">atencion@avalluo.com</a>
+      </div>
+      <div class="cta-contact-dot"></div>
+      <div class="cta-contact-item">Respuesta en menos de 24 horas</div>
+      <div class="cta-contact-dot"></div>
+      <div class="cta-contact-item">Cobertura nacional</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo-text">avalluo</div>
+    <ul class="footer-links">
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Términos</a></li>
+      <li><a href="mailto:atencion@avalluo.com">Contacto</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 avalluo. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer para fade-up
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.animationPlayState='running';
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.diff-card,.client-card,.tech-card,.hook-card,.val-benefit').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity .6s ease, transform .6s ease';
+  observer.observe(el);
+});
+
+// Reveal on intersect
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.diff-card,.client-card,.tech-card,.hook-card,.val-benefit').forEach(el=>{
+  revealObserver.observe(el);
+});
+
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  if(window.scrollY>20){
+    nav.style.boxShadow='0 2px 20px rgba(0,0,0,0.08)';
+  }else{
+    nav.style.boxShadow='none';
+  }
+});
+
+// CTA cards click
+document.querySelectorAll('.client-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    window.location.href='mailto:atencion@avalluo.com';
+  });
+});
+</script>
+</body>
+</html>
