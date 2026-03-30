@@ -68,7 +68,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;ali
 
 /* HERO VISUAL */
 .hero-right{position:relative;display:flex;justify-content:center;align-items:flex-end}
-.hero-mascot{width:100%;max-width:480px;position:relative;z-index:2;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.hero-mascot{width:100%;max-width:480px;position:relative;z-index:2;background:transparent}
 .hero-mascot img{width:100%;display:block}
 .hero-stat-float{position:absolute;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow-lg);z-index:3}
 .hero-stat-float.s1{top:20px;left:-20px}
@@ -215,6 +215,53 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
 .footer-links a{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:rgba(255,255,255,0.7)}
 
+/* ─── DASHBOARD SHOWCASE ─── */
+.dash-showcase{margin-top:80px;padding-top:80px;border-top:1px solid var(--border)}
+.dash-showcase-header{text-align:center;margin-bottom:60px}
+.dash-showcase-title{font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:12px}
+.dash-showcase-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px;margin:0 auto}
+.dash-visual{position:relative;max-width:860px;margin:0 auto;padding:24px 0 32px}
+.dash-float-top{position:absolute;top:0;right:20px;background:white;border-radius:12px;padding:11px 16px;box-shadow:0 6px 24px rgba(0,0,0,0.1);border:1px solid var(--border);display:flex;align-items:center;gap:10px;z-index:10;animation:float 4s ease-in-out infinite;white-space:nowrap}
+.dash-float-bottom{position:absolute;bottom:8px;left:20px;background:white;border-radius:12px;padding:11px 16px;box-shadow:0 6px 24px rgba(0,0,0,0.1);border:1px solid var(--border);display:flex;align-items:center;gap:10px;z-index:10;animation:float 5s ease-in-out infinite reverse;white-space:nowrap}
+.dash-float-icon{font-size:20px;flex-shrink:0}
+.dash-float-strong{display:block;font-size:12px;font-weight:700;color:var(--ink)}
+.dash-float-span{font-size:11px;color:var(--gray2)}
+.dash-card{background:white;border-radius:18px;box-shadow:0 20px 64px rgba(0,0,0,0.13);overflow:hidden;border:1px solid var(--border)}
+.dash-topbar{background:var(--ink2);padding:14px 20px;display:flex;align-items:center;gap:12px}
+.dash-db-dots{display:flex;gap:6px}
+.dash-db-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2)}
+.dash-db-dot:first-child{background:#FF5F57}.dash-db-dot:nth-child(2){background:#FEBC2E}.dash-db-dot:nth-child(3){background:#28C840}
+.dash-title-bar{color:rgba(255,255,255,0.45);font-size:13px;font-weight:500;flex:1;text-align:center}
+.dash-body{display:grid;grid-template-columns:190px 1fr;min-height:360px}
+.dash-sidebar{background:var(--ink2);padding:16px 0}
+.dash-nav-label{padding:14px 16px 5px;font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+.dash-nav-item{padding:9px 16px;font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:8px;cursor:pointer;transition:all .15s}
+.dash-nav-item.active{background:rgba(255,255,255,0.06);color:white;border-left:2px solid var(--teal)}
+.dash-nav-item svg{width:14px;height:14px;stroke-width:1.5;flex-shrink:0}
+.dash-content{padding:20px;background:white}
+.dash-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.dash-project-title{font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-0.02em}
+.dash-project-sub{font-size:11px;color:var(--gray2);margin-top:2px}
+.dash-badge-teal{background:var(--teal-light);color:var(--teal);font-size:10px;font-weight:700;padding:6px 12px;border-radius:100px;border:1px solid var(--border2);letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.dash-kpi{background:var(--off);border-radius:10px;padding:12px;border:1px solid var(--border)}
+.dash-kpi-num{font-size:20px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em}
+.dash-kpi-lbl{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
+.dash-kpi-delta{font-size:10px;color:var(--teal);font-weight:500;margin-top:2px}
+.dash-pareto{background:var(--off);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px}
+.dash-pareto-lbl{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.dash-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.dash-bar-name{font-size:10px;color:var(--gray);width:115px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash-bar-track{flex:1;background:white;border-radius:100px;height:6px;overflow:hidden}
+.dash-bar-fill{height:100%;border-radius:100px;background:var(--grad)}
+.dash-bar-pct{font-size:10px;color:var(--gray2);width:34px;text-align:right}
+.dash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dash-btn{background:var(--ink2);color:white;border:none;border-radius:10px;padding:10px 14px;font-size:11px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:opacity .2s;font-family:'Ubuntu',sans-serif}
+.dash-btn:hover{opacity:.8}
+.dash-btn.outline{background:transparent;color:var(--ink);border:1.5px solid var(--border)}
+.dash-btn svg{width:13px;height:13px;stroke-width:1.5;flex-shrink:0}
+@media(max-width:700px){.dash-body{grid-template-columns:1fr}.dash-sidebar{display:none}.dash-float-top,.dash-float-bottom{display:none}}
+
 /* ─── ANIMACIONES ─── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -244,8 +291,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
-      <!-- Reemplaza con tu logo: <img src="avalluo_logo.png" alt="avalluo"> -->
-      <span class="nav-logo-text">avalluo</span>
+      <img src="Avalluo Logo (1).png" alt="avalluo">
     </div>
     <ul class="nav-links">
       <li><a href="#diferenciadores">Tecnología</a></li>
@@ -288,8 +334,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
     </div>
     <div class="hero-right">
       <div class="hero-mascot animate-float">
-        <!-- Reemplaza con imagen de mascota: <img src="mascota.png" alt="avalluo"> -->
-        <img src="Gemini_Generated_Image_1qom801qom801qom__1_.png" alt="avalluo mascot">
+        <img src="Capi y Avalluo.png" alt="Capi y avalluo">
       </div>
       <div class="hero-stat-float s1">
         <div class="stat-val">+12,000</div>
@@ -349,6 +394,121 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
         <div class="diff-title">Metodología Propia</div>
         <div class="diff-desc">Desarrollamos nuestra propia metodología de valuación, documentada y auditada bajo la norma NMX-Z-013. Cada factor —físico, funcional y de obsolescencia— se calcula con criterios claros, trazables y reproducibles.</div>
         <span class="diff-highlight">NMX-Z-013 · Trazabilidad total</span>
+      </div>
+    </div>
+
+    <!-- Dashboard Showcase -->
+    <div class="dash-showcase">
+      <div class="dash-showcase-header">
+        <h3 class="dash-showcase-title">La plataforma que hace el trabajo pesado</h3>
+        <p class="dash-showcase-sub">Importa tu inventario, la IA categoriza y prioriza, tu valuador inspecciona en campo y el sistema genera el dictamen firmado. Todo en un solo lugar.</p>
+      </div>
+      <div class="dash-visual">
+        <div class="dash-float-top">
+          <span class="dash-float-icon">🤖</span>
+          <div>
+            <strong class="dash-float-strong">IA categorizó 1,951 ítems</strong>
+            <span class="dash-float-span">en 3.2 segundos · 94.8% precisión</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-topbar">
+            <div class="dash-db-dots"><div class="dash-db-dot"></div><div class="dash-db-dot"></div><div class="dash-db-dot"></div></div>
+            <div class="dash-title-bar">avalluo — Proyecto Maquiladora TechCorp</div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-sidebar">
+              <div class="dash-nav-label">Navegación</div>
+              <div class="dash-nav-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>
+                Proyectos
+              </div>
+              <div class="dash-nav-item active">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                Avalúo Activos
+              </div>
+              <div class="dash-nav-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                App de Campo
+              </div>
+              <div class="dash-nav-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Reportes
+              </div>
+              <div class="dash-nav-label">Servicios</div>
+              <div class="dash-nav-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 8v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                Actas Corp.
+              </div>
+            </div>
+            <div class="dash-content">
+              <div class="dash-header">
+                <div>
+                  <div class="dash-project-title">Maquiladora TechCorp</div>
+                  <div class="dash-project-sub">Concurso Mercantil · Monterrey, NL · 1,951 ítems</div>
+                </div>
+                <div class="dash-badge-teal">En análisis</div>
+              </div>
+              <div class="dash-kpis">
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num">$13.6M</div>
+                  <div class="dash-kpi-lbl">VNR Total USD</div>
+                  <div class="dash-kpi-delta">▲ VNR calculado</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num">523</div>
+                  <div class="dash-kpi-lbl">A inspección física</div>
+                  <div class="dash-kpi-delta">84% del valor</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num">20</div>
+                  <div class="dash-kpi-lbl">Categorías</div>
+                  <div class="dash-kpi-delta">4 prioritarias</div>
+                </div>
+              </div>
+              <div class="dash-pareto">
+                <div class="dash-pareto-lbl">Pareto VNR por Categoría</div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Infraest. de Red</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:68%"></div></div>
+                  <div class="dash-bar-pct">67.7%</div>
+                </div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Comp. Electrónicos</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:8%"></div></div>
+                  <div class="dash-bar-pct">6.0%</div>
+                </div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Equipo de Cómputo</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:6%"></div></div>
+                  <div class="dash-bar-pct">5.7%</div>
+                </div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Mob. Industrial</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:5%"></div></div>
+                  <div class="dash-bar-pct">4.9%</div>
+                </div>
+              </div>
+              <div class="dash-actions">
+                <button class="dash-btn">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                  Enviar a campo
+                </button>
+                <button class="dash-btn outline">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  Generar reporte
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-float-bottom">
+          <span class="dash-float-icon">✍️</span>
+          <div>
+            <strong class="dash-float-strong">Reporte generado · firmado con e.firma</strong>
+            <span class="dash-float-span">Válido ante NMX-Z-013 · Hash: a7f2c…</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -672,7 +832,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo-text">avalluo</div>
+    <img src="Avalluo Logo (2).png" alt="avalluo" style="height:28px;display:block">
     <ul class="footer-links">
       <li><a href="#">Privacidad</a></li>
       <li><a href="#">Términos</a></li>
