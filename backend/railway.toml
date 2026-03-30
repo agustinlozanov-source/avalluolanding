@@ -3,7 +3,3 @@ builder = "nixpacks"
 
 [deploy]
 startCommand = "node index.js"
-restartPolicyType = "on-failure"
-
-[build.nixpacksPlan.phases.install]
-cmds = ["cd backend && npm install"]
