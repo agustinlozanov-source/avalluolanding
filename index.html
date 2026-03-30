@@ -367,6 +367,14 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
   .nav-links{display:none}
   .footer-inner{flex-direction:column;gap:16px;text-align:center}
 }
+
+/* ─── LUCIDE ICONS ─── */
+.diff-icon{color:white}
+.diff-icon svg{width:24px;height:24px;stroke:white;stroke-width:1.5;fill:none}
+.val-benefit-icon{color:white}
+.val-benefit-icon svg{width:20px;height:20px;stroke:white;stroke-width:1.5;fill:none}
+.client-emoji{color:var(--teal)}
+.client-emoji svg{width:36px;height:36px;stroke:var(--teal);stroke-width:1.5;fill:none}
 </style>
 
 <script type="application/ld+json">
@@ -478,7 +486,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
       <div class="hero-actions fade-up delay-3">
         <a href="#contacto" class="btn-grad">
           Solicitar un avalúo
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <i data-lucide="arrow-right" width="16" height="16"></i>
         </a>
         <a href="#proceso" class="btn-ghost">¿Cómo funciona?</a>
       </div>
@@ -558,19 +566,19 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
     <p class="section-sub">No somos un despacho tradicional. Somos una plataforma tecnológica que opera con la precisión de un sistema y la confianza de un equipo certificado.</p>
     <div class="diff-grid">
       <div class="diff-card">
-        <div class="diff-icon">🖥️</div>
+        <div class="diff-icon"><i data-lucide="monitor"></i></div>
         <div class="diff-title">Tecnología Propia</div>
         <div class="diff-desc">Nuestra plataforma digital gestiona todo el proceso de avalúo: importación de inventarios, categorización con IA, inspección guiada en campo y generación del dictamen. Desarrollada 100% internamente para el mercado mexicano.</div>
         <span class="diff-highlight">Plataforma exclusiva avalluo</span>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">🗄️</div>
+        <div class="diff-icon"><i data-lucide="database"></i></div>
         <div class="diff-title">Base de Datos Propia</div>
         <div class="diff-desc">Años de avalúos reales generan nuestra base de datos de valores de mercado. Precios actualizados de maquinaria industrial, embarcaciones y aeronaves que ningún competidor tiene. Tu dictamen se apoya en inteligencia real, no en estimaciones.</div>
         <span class="diff-highlight">Datos exclusivos del mercado mexicano</span>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">📐</div>
+        <div class="diff-icon"><i data-lucide="ruler"></i></div>
         <div class="diff-title">Metodología Propia</div>
         <div class="diff-desc">Desarrollamos nuestra propia metodología de valuación, documentada y auditada bajo la norma NMX-Z-013. Cada factor —físico, funcional y de obsolescencia— se calcula con criterios claros, trazables y reproducibles.</div>
         <span class="diff-highlight">NMX-Z-013 · Trazabilidad total</span>
@@ -600,24 +608,24 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
             <div class="dash-sidebar">
               <div class="dash-nav-label">Navegación</div>
               <div class="dash-nav-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>
+                <i data-lucide="list"></i>
                 Proyectos
               </div>
               <div class="dash-nav-item active">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                <i data-lucide="bar-chart-2"></i>
                 Avalúo Activos
               </div>
               <div class="dash-nav-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                <i data-lucide="smartphone"></i>
                 App de Campo
               </div>
               <div class="dash-nav-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <i data-lucide="file-text"></i>
                 Reportes
               </div>
               <div class="dash-nav-label">Servicios</div>
               <div class="dash-nav-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 8v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                <i data-lucide="building-2"></i>
                 Actas Corp.
               </div>
             </div>
@@ -671,11 +679,11 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
               </div>
               <div class="dash-actions">
                 <button class="dash-btn">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                  <i data-lucide="smartphone"></i>
                   Enviar a campo
                 </button>
                 <button class="dash-btn outline">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  <i data-lucide="file-text"></i>
                   Generar reporte
                 </button>
               </div>
@@ -702,7 +710,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
     <p class="section-sub">Desde una empresa con maquinaria parada hasta un fondo buscando certeza antes de invertir. Si hay un activo de por medio, avalluo tiene la solución.</p>
     <div class="clients-grid">
       <div class="client-card">
-        <span class="client-emoji">🏭</span>
+        <span class="client-emoji"><i data-lucide="factory"></i></span>
         <div class="client-title">Empresas Industriales</div>
         <div class="client-desc">Necesitas conocer el valor real de tu maquinaria para revaluación contable, crédito, venta o concurso mercantil. Tenemos experiencia con inventarios de miles de ítems.</div>
         <div class="client-tags">
@@ -713,7 +721,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
         <span class="client-cta">Solicitar avalúo →</span>
       </div>
       <div class="client-card">
-        <span class="client-emoji">⚓</span>
+        <span class="client-emoji"><i data-lucide="anchor"></i></span>
         <div class="client-title">Embarcaciones y Marinas</div>
         <div class="client-desc">Avalúos especializados de embarcaciones comerciales, de pesca o recreativas. Valoramos con acceso a bases de datos internacionales de mercado secundario.</div>
         <div class="client-tags">
@@ -724,7 +732,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
         <span class="client-cta">Solicitar avalúo →</span>
       </div>
       <div class="client-card">
-        <span class="client-emoji">✈️</span>
+        <span class="client-emoji"><i data-lucide="plane"></i></span>
         <div class="client-title">Aeronaves</div>
         <div class="client-desc">Valuación de aeronaves privadas, comerciales y de carga. Acceso a precios internacionales (Aircraft Bluebook, VREF) y valuadores especializados en aviación.</div>
         <div class="client-tags">
@@ -735,7 +743,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
         <span class="client-cta">Solicitar avalúo →</span>
       </div>
       <div class="client-card">
-        <span class="client-emoji">🏦</span>
+        <span class="client-emoji"><i data-lucide="landmark"></i></span>
         <div class="client-title">Instituciones Financieras</div>
         <div class="client-desc">Fondos de inversión, bancos y SOFOMES que necesitan dictámenes confiables para tomar decisiones de crédito o inversión sobre activos productivos.</div>
         <div class="client-tags">
@@ -746,7 +754,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
         <span class="client-cta">Solicitar avalúo →</span>
       </div>
       <div class="client-card">
-        <span class="client-emoji">⚖️</span>
+        <span class="client-emoji"><i data-lucide="scale"></i></span>
         <div class="client-title">Procesos Legales</div>
         <div class="client-desc">Síndicos, liquidadores y despachos jurídicos que requieren avalúos con validez legal para concursos mercantiles, divorcios, herencias o litigios.</div>
         <div class="client-tags">
@@ -757,7 +765,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
         <span class="client-cta">Solicitar avalúo →</span>
       </div>
       <div class="client-card">
-        <span class="client-emoji">🏗️</span>
+        <span class="client-emoji"><i data-lucide="building-2"></i></span>
         <div class="client-title">Maquiladoras y manufactura</div>
         <div class="client-desc">Inventarios complejos de plantas de manufactura, especialmente en la frontera norte. Nuestra plataforma procesa miles de ítems con precisión y en tiempo récord.</div>
         <div class="client-tags">
@@ -925,28 +933,28 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
         <p class="section-sub" style="color:rgba(255,255,255,0.45)">Buscamos profesionales certificados en toda la república para formar parte de la red de valuadores más avanzada tecnológicamente de México.</p>
         <div class="val-benefits">
           <div class="val-benefit">
-            <div class="val-benefit-icon">🛠️</div>
+            <div class="val-benefit-icon"><i data-lucide="wrench"></i></div>
             <div>
               <div class="val-benefit-title">Tecnología de vanguardia en tu bolsillo</div>
               <div class="val-benefit-desc">App propia que te guía ítem a ítem. IA visual que sugiere el FC basada en fotos. Ruta optimizada en planta. Sincronización automática.</div>
             </div>
           </div>
           <div class="val-benefit">
-            <div class="val-benefit-icon">📊</div>
+            <div class="val-benefit-icon"><i data-lucide="bar-chart-2"></i></div>
             <div>
               <div class="val-benefit-title">Acceso a nuestra base de datos exclusiva</div>
               <div class="val-benefit-desc">Trabaja con precios reales de mercado que ningún valuador independiente tiene. Dictámenes más sólidos, menos tiempo de investigación.</div>
             </div>
           </div>
           <div class="val-benefit">
-            <div class="val-benefit-icon">🌐</div>
+            <div class="val-benefit-icon"><i data-lucide="globe"></i></div>
             <div>
               <div class="val-benefit-title">Proyectos en todo México</div>
               <div class="val-benefit-desc">Asignamos proyectos por tu ubicación y especialidad. Sin prospección. Tú llegas a inspeccionar y nosotros cerramos el proceso.</div>
             </div>
           </div>
           <div class="val-benefit">
-            <div class="val-benefit-icon">💼</div>
+            <div class="val-benefit-icon"><i data-lucide="briefcase"></i></div>
             <div>
               <div class="val-benefit-title">Respaldo metodológico total</div>
               <div class="val-benefit-desc">Nuestra metodología documentada respalda cada dictamen. Menos exposición legal, más confianza en cada entrega.</div>
@@ -989,7 +997,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
     <div class="cta-actions">
       <a href="mailto:atencion@avalluo.com" class="btn-grad" style="font-size:16px;padding:18px 36px">
         Contactar a avalluo
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <i data-lucide="arrow-right" width="16" height="16"></i>
       </a>
       <a href="https://wa.me/12605298161" class="btn-ghost" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15);background:transparent">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -998,7 +1006,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
     </div>
     <div class="cta-contact">
       <div class="cta-contact-item">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <i data-lucide="mail" width="14" height="14"></i>
         <a href="mailto:atencion@avalluo.com">atencion@avalluo.com</a>
       </div>
       <div class="cta-contact-dot"></div>
@@ -1020,13 +1028,13 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
     </a>
     <a href="tel:+5218180000000" class="fw-btn call">
       <span class="fw-btn-icon">
-        <svg viewBox="0 0 24 24"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15v1.92z"/></svg>
+        <i data-lucide="phone"></i>
       </span>
       <div><span class="fw-text">Llamar ahora</span><div class="fw-label">Lunes–Viernes 9–18h</div></div>
     </a>
     <button class="fw-btn meet" id="openChat">
       <span class="fw-btn-icon">
-        <svg viewBox="0 0 24 24"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        <i data-lucide="message-circle"></i>
       </span>
       <div><span class="fw-text">Chat con IA</span><div class="fw-label">Capi te responde ya</div></div>
     </button>
@@ -1048,14 +1056,14 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
       <div class="chat-agent-status">● En línea · responde en segundos</div>
     </div>
     <button class="chat-close" id="chatClose">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      <i data-lucide="x" width="18" height="18"></i>
     </button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-input-area">
     <textarea class="chat-input" id="chatInput" rows="1" placeholder="Escribe tu pregunta…"></textarea>
     <button class="chat-send" id="chatSendBtn">
-      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <i data-lucide="send"></i>
     </button>
   </div>
 </div>
@@ -1073,6 +1081,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
   </div>
 </footer>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
 // ── 1. REVEAL CARDS ──
@@ -1189,7 +1198,7 @@ const openChatBtn=document.getElementById('openChat');
 const chatCloseBtn=document.getElementById('chatClose');
 
 // CONFIGURA TU API KEY AQUÍ
-const CLAUDE_API_KEY='TU_API_KEY_AQUI';
+const CLAUDE_API_KEY='REEMPLAZAR_CON_API_KEY';
 const SYSTEM_PROMPT=`Eres Capi, el asistente virtual de avalluo — la plataforma líder de avalúos de activos en México. Tu tono es profesional pero cercano, claro y confiable. Hablas en español mexicano.
 
 Tu objetivo es:
@@ -1280,6 +1289,8 @@ chatInput.addEventListener('input',function(){
   this.style.height='auto';
   this.style.height=Math.min(this.scrollHeight,100)+'px';
 });
+
+lucide.createIcons();
 </script>
 </body>
 </html>
