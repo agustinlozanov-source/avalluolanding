@@ -1032,7 +1032,7 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
       </span>
       <div><span class="fw-text">Llamar ahora</span><div class="fw-label">Lunes–Viernes 9–18h</div></div>
     </a>
-    <button class="fw-btn meet" id="openChat">
+    <button class="fw-btn meet" onclick="toggleCapi()">
       <span class="fw-btn-icon">
         <i data-lucide="message-circle"></i>
       </span>
@@ -1044,28 +1044,6 @@ footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,2
       <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
     </svg>
   </button>
-</div>
-
-<!-- CHAT WINDOW -->
-<div class="chat-overlay" id="chatOverlay"></div>
-<div class="chat-window" id="chatWindow">
-  <div class="chat-header">
-    <div class="chat-avatar">🦫</div>
-    <div>
-      <div class="chat-agent-name">Capi — Asistente avalluo</div>
-      <div class="chat-agent-status">● En línea · responde en segundos</div>
-    </div>
-    <button class="chat-close" id="chatClose">
-      <i data-lucide="x" width="18" height="18"></i>
-    </button>
-  </div>
-  <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-input-area">
-    <textarea class="chat-input" id="chatInput" rows="1" placeholder="Escribe tu pregunta…"></textarea>
-    <button class="chat-send" id="chatSendBtn">
-      <i data-lucide="send"></i>
-    </button>
-  </div>
 </div>
 
 <!-- FOOTER -->
@@ -1188,116 +1166,11 @@ fwToggle.addEventListener('click',()=>{
     :'<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>';
 });
 
-// ── 7. CHAT IA ──
-const chatWindow=document.getElementById('chatWindow');
-const chatOverlay=document.getElementById('chatOverlay');
-const chatMessages=document.getElementById('chatMessages');
-const chatInput=document.getElementById('chatInput');
-const chatSendBtn=document.getElementById('chatSendBtn');
-const openChatBtn=document.getElementById('openChat');
-const chatCloseBtn=document.getElementById('chatClose');
-
-// CONFIGURA TU API KEY AQUÍ
-const CLAUDE_API_KEY='REEMPLAZAR_CON_API_KEY';
-const SYSTEM_PROMPT=`Eres Capi, el asistente virtual de avalluo — la plataforma líder de avalúos de activos en México. Tu tono es profesional pero cercano, claro y confiable. Hablas en español mexicano.
-
-Tu objetivo es:
-1. Resolver dudas sobre avalúos (maquinaria, embarcaciones, aeronaves, activos industriales).
-2. Explicar cómo funciona avalluo: plataforma propia, valuadores certificados, metodología NMX-Z-013.
-3. Calificar al lead: pregunta qué tipo de activo quiere valuar, para qué fin (crédito, venta, concurso mercantil, revaluación) y en qué estado de la República.
-4. Al final de la conversación (cuando el lead está interesado), pide su nombre, empresa y teléfono para que un especialista lo contacte.
-
-Sé conciso. Respuestas cortas (máx 3 oraciones). Si no sabes algo específico, ofrece que un especialista lo contacte.`;
-
-let chatHistory=[];
-let chatStarted=false;
-
-function openChat(){
-  chatWindow.classList.add('open');
-  chatOverlay.classList.add('open');
-  fwButtons.classList.add('hidden');
-  fwOpen=false;
-  fwIcon.innerHTML='<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>';
-  if(!chatStarted){
-    chatStarted=true;
-    setTimeout(()=>addBotMessage('¡Hola! Soy Capi 👋 El asistente de avalluo. ¿En qué te puedo ayudar hoy? Puedo orientarte sobre avalúos de maquinaria, embarcaciones, aeronaves y más.'),400);
-  }
-}
-function closeChat(){
-  chatWindow.classList.remove('open');
-  chatOverlay.classList.remove('open');
-}
-
-openChatBtn.addEventListener('click',openChat);
-chatCloseBtn.addEventListener('click',closeChat);
-chatOverlay.addEventListener('click',closeChat);
-
-function addBotMessage(text){
-  const msg=document.createElement('div');
-  msg.className='chat-msg bot';
-  msg.textContent=text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop=chatMessages.scrollHeight;
-}
-function addUserMessage(text){
-  const msg=document.createElement('div');
-  msg.className='chat-msg user';
-  msg.textContent=text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop=chatMessages.scrollHeight;
-}
-function showTyping(){
-  const t=document.createElement('div');
-  t.className='chat-msg typing';
-  t.id='typing-indicator';
-  t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-  chatMessages.appendChild(t);
-  chatMessages.scrollTop=chatMessages.scrollHeight;
-}
-function removeTyping(){const t=document.getElementById('typing-indicator');if(t)t.remove();}
-
-async function sendMessage(){
-  const text=chatInput.value.trim();
-  if(!text)return;
-  chatInput.value='';
-  chatInput.style.height='auto';
-  addUserMessage(text);
-  chatHistory.push({role:'user',content:text});
-  showTyping();
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'x-api-key':CLAUDE_API_KEY,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-3-5-haiku-20241022',max_tokens:300,system:SYSTEM_PROMPT,messages:chatHistory})
-    });
-    const data=await res.json();
-    removeTyping();
-    const reply=data.content&&data.content[0]?data.content[0].text:'Lo siento, hubo un error. Por favor escríbenos a atencion@avalluo.com';
-    chatHistory.push({role:'assistant',content:reply});
-    addBotMessage(reply);
-  }catch(err){
-    removeTyping();
-    addBotMessage('Parece que hay un problema de conexión. Puedes escribirnos directamente a atencion@avalluo.com 📧');
-  }
-}
-
-chatSendBtn.addEventListener('click',sendMessage);
-chatInput.addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}
-});
-chatInput.addEventListener('input',function(){
-  this.style.height='auto';
-  this.style.height=Math.min(this.scrollHeight,100)+'px';
-});
-
 lucide.createIcons();
 </script>
 
 <!-- CAPI CHAT WIDGET -->
 <style>
-#capi-btn{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1f9095,#2d43b3);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(31,144,149,0.4);display:flex;align-items:center;justify-content:center;transition:transform .2s}
-#capi-btn:hover{transform:scale(1.08)}
-#capi-btn svg{width:26px;height:26px;fill:white}
 #capi-box{position:fixed;bottom:96px;right:28px;z-index:999;width:360px;background:white;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.15);display:none;flex-direction:column;overflow:hidden;font-family:'Ubuntu',sans-serif}
 #capi-box.open{display:flex}
 #capi-header{background:linear-gradient(135deg,#1f9095,#2d43b3);padding:16px 20px;display:flex;align-items:center;gap:12px}
@@ -1319,10 +1192,6 @@ lucide.createIcons();
 #capi-wapp{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#f0fdf4;border-top:1px solid rgba(0,0,0,0.05);font-size:12px;color:#16a34a;text-decoration:none;font-weight:600;transition:background .2s}
 #capi-wapp:hover{background:#dcfce7}
 </style>
-
-<button id="capi-btn" onclick="toggleCapi()" title="Habla con Capi">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.073-1.117l-.291-.174-3.018.898.898-3.018-.174-.291A8 8 0 1112 20z"/></svg>
-</button>
 
 <div id="capi-box">
   <div id="capi-header">
