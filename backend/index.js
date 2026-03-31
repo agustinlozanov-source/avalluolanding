@@ -7,8 +7,23 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 app.use(express.json());
 app.use(cors({
-  origin: ["https://avalluo.com", "http://localhost:3000"],
-  methods: ["POST"],
+  origin: function(origin, callback){
+    const allowed = [
+      'https://avalluo.com',
+      'https://www.avalluo.com',
+      'http://localhost:3000',
+      'http://localhost:5500',
+      'http://127.0.0.1:5500',
+    ];
+    // Permitir cualquier subdominio de netlify.app
+    if(!origin || allowed.includes(origin) || /\.netlify\.app$/.test(origin)){
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['POST', 'GET', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
 }));
 
 const SYSTEM_PROMPT = `Eres Capi, el asistente virtual de avalluo. 
@@ -36,7 +51,7 @@ app.post("/chat", async (req, res) => {
 
   try {
     const response = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-3-5-sonnet-20241022",
       max_tokens: 1024,
       system: SYSTEM_PROMPT,
       messages,
