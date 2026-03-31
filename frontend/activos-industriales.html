@@ -802,17 +802,32 @@ const counter = document.getElementById('counter-avaluos');
 if(counter) counterObserver.observe(counter);
 
 // Form submit
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault();
   const form = document.getElementById('avaluo-form');
   const success = document.getElementById('form-success');
+  const btn = form.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
   const data = new FormData(form);
   const payload = Object.fromEntries(data.entries());
-  console.log('Lead:', payload);
-  // TODO: fetch('/api/leads', { method:'POST', body: JSON.stringify(payload) })
-  form.style.display='none';
-  success.style.display='block';
-  if(typeof gtag==='function'){
+
+  try {
+    const res = await fetch('https://avalluolanding-production.up.railway.app/web-leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('Error del servidor');
+  } catch(err) {
+    console.error('Error enviando lead:', err);
+  }
+
+  form.style.display = 'none';
+  success.style.display = 'block';
+
+  if(typeof gtag === 'function'){
     gtag('event','conversion',{'send_to':'AW-18054348116/EatACNStnpMcENT6_aBD','value':1.0,'currency':'MXN'});
   }
 }
