@@ -66,6 +66,7 @@ body{font-family:'Ubuntu',system-ui,sans-serif;background:var(--white);color:var
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;background:rgba(255,255,255,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
 .nav-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:32px;display:block}
 .nav-logo-text{font-size:22px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em;text-decoration:none}
 .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
 .nav-links a{font-size:14px;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
@@ -299,7 +300,9 @@ footer{background:var(--ink2);padding:56px 0 32px}
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="https://avalluo.com" class="nav-logo-text">avalluo</a>
+    <a href="https://avalluo.com" class="nav-logo">
+      <img src="assets/Avalluo Logo (1).png" alt="avalluo">
+    </a>
     <ul class="nav-links">
       <li><a href="#servicios">Nuestros servicios</a></li>
       <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -718,7 +721,7 @@ footer{background:var(--ink2);padding:56px 0 32px}
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo-text">avalluo</div>
+        <img src="assets/Avalluo Logo (2).png" alt="avalluo" style="height:28px;display:block;margin-bottom:8px">
         <div class="footer-tagline">La plataforma de valuación industrial más ágil de México. Tecnología propia, fe pública federal, cobertura nacional.</div>
         <div class="footer-legal">
           avalluo.com<br>
