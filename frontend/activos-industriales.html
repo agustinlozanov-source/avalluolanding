@@ -802,17 +802,57 @@ const counter = document.getElementById('counter-avaluos');
 if(counter) counterObserver.observe(counter);
 
 // Form submit
-function handleSubmit(e){
+async function handleSubmit(e){
   e.preventDefault();
   const form = document.getElementById('avaluo-form');
+  const btn = form.querySelector('.btn-submit');
   const success = document.getElementById('form-success');
+
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
   const data = new FormData(form);
-  const payload = Object.fromEntries(data.entries());
-  console.log('Lead:', payload);
-  form.style.display='none';
-  success.style.display='block';
-  if(typeof gtag==='function'){
-    gtag('event','conversion',{'send_to':'AW-18054348116/EatACNStnpMcENT6_aBD','value':1.0,'currency':'MXN'});
+  const payload = {
+    nombre: data.get('nombre'),
+    empresa: data.get('empresa'),
+    telefono: data.get('telefono'),
+    correo: data.get('correo'),
+    tipo_activo: data.get('tipo_activo'),
+    proposito: data.get('proposito'),
+    urgencia: data.get('urgencia'),
+    valor_estimado: data.get('valor_estimado'),
+    estado: data.get('estado'),
+    descripcion: data.get('descripcion'),
+    landingPageId: 'activos-industriales',
+    orgId: 'uZMwlNxde6TnqGo0HWiD'
+  };
+
+  try {
+    const res = await fetch('https://flowcrm-production-6d63.up.railway.app/web-leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await res.json();
+
+    if(result.success){
+      form.style.display = 'none';
+      success.style.display = 'block';
+      if(typeof gtag === 'function'){
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18054348116/EatACNStnpMcENT6_aBD',
+          'value': 1.0,
+          'currency': 'MXN'
+        });
+      }
+    } else {
+      throw new Error('Error del servidor');
+    }
+  } catch(err) {
+    btn.textContent = 'Solicitar mi avalúo ahora →';
+    btn.disabled = false;
+    alert('Hubo un error al enviar. Por favor escríbenos por WhatsApp.');
   }
 }
 
