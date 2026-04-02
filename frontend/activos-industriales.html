@@ -825,8 +825,11 @@ async function handleSubmit(e){
   const btn = form.querySelector('.btn-submit');
   const success = document.getElementById('form-success');
 
-  btn.textContent = 'Enviando...';
   btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  const tracking = JSON.parse(sessionStorage.getItem('avalluo_tracking') || '{}');
+  const submitEventId = 'ev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
   const data = new FormData(form);
   const payload = {
@@ -841,7 +844,19 @@ async function handleSubmit(e){
     estado: data.get('estado'),
     descripcion: data.get('descripcion'),
     landingPageId: 'activos-industriales',
-    orgId: 'uZMwlNxde6TnqGo0HWiD'
+    orgId: 'uZMwlNxde6TnqGo0HWiD',
+    tracking: {
+      utm_source: tracking.utm_source || '',
+      utm_medium: tracking.utm_medium || '',
+      utm_campaign: tracking.utm_campaign || '',
+      utm_content: tracking.utm_content || '',
+      utm_term: tracking.utm_term || '',
+      fbclid: tracking.fbclid || '',
+      fbc: tracking.fbc || '',
+      fbp: tracking.fbp || '',
+      event_id: submitEventId,
+      landing_name: tracking.landing_name || '',
+    }
   };
 
   try {
@@ -850,25 +865,28 @@ async function handleSubmit(e){
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-
     const result = await res.json();
 
     if(result.success){
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'form_submit_success', event_id: submitEventId, landing_name: 'activos-industriales', form_name: 'solicitud_valuacion' });
+
+      if(typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', { content_name: 'activos-industriales', content_category: 'landing' }, { eventID: submitEventId });
+      }
+
+      if(typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18054348116/EatACNStnpMcENT6_aBD', 'value': 1.0, 'currency': 'MXN' });
+        gtag('event', 'generate_lead', { 'landing': 'activos-industriales' });
+      }
+
       form.style.display = 'none';
       success.style.display = 'block';
-      if(typeof gtag === 'function'){
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18054348116/EatACNStnpMcENT6_aBD',
-          'value': 1.0,
-          'currency': 'MXN'
-        });
-      }
-    } else {
-      throw new Error('Error del servidor');
-    }
+    } else { throw new Error(); }
+
   } catch(err) {
-    btn.textContent = 'Solicitar mi avalúo ahora →';
     btn.disabled = false;
+    btn.textContent = 'Solicitar mi avalúo ahora →';
     alert('Hubo un error al enviar. Por favor escríbenos por WhatsApp.');
   }
 }

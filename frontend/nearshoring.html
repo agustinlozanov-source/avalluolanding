@@ -936,6 +936,9 @@ async function handleSubmit(e){
   btn.disabled = true;
   btn.innerHTML = '<span>' + (currentLang === 'en' ? 'Sending...' : 'Enviando...') + '</span>';
 
+  const tracking = JSON.parse(sessionStorage.getItem('avalluo_tracking') || '{}');
+  const submitEventId = 'ev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
   const data = new FormData(form);
   const payload = {
     nombre: data.get('nombre'),
@@ -953,6 +956,18 @@ async function handleSubmit(e){
     metadata_extra: {
       pais: data.get('pais'),
       idioma_preferido: data.get('idioma'),
+    },
+    tracking: {
+      utm_source: tracking.utm_source || '',
+      utm_medium: tracking.utm_medium || '',
+      utm_campaign: tracking.utm_campaign || '',
+      utm_content: tracking.utm_content || '',
+      utm_term: tracking.utm_term || '',
+      fbclid: tracking.fbclid || '',
+      fbc: tracking.fbc || '',
+      fbp: tracking.fbp || '',
+      event_id: submitEventId,
+      landing_name: tracking.landing_name || '',
     }
   };
 
@@ -964,12 +979,20 @@ async function handleSubmit(e){
     });
     const result = await res.json();
     if(result.success){
-      form.style.display = 'none';
-      success.style.display = 'block';
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'form_submit_success', event_id: submitEventId, landing_name: 'nearshoring', form_name: 'solicitud_valuacion' });
+
+      if(typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', { content_name: 'nearshoring', content_category: 'landing' }, { eventID: submitEventId });
+      }
+
       if(typeof gtag === 'function'){
         gtag('event','conversion',{'send_to':'AW-18054348116/EatACNStnpMcENT6_aBD','value':1.0,'currency':'MXN'});
         gtag('event','generate_lead',{'language': data.get('idioma'), 'landing': 'nearshoring'});
       }
+
+      form.style.display = 'none';
+      success.style.display = 'block';
     } else { throw new Error(); }
   } catch(err){
     btn.disabled = false;
