@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '932204296451722');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=932204296451722&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18054348116"></script>
 <script>
@@ -862,6 +879,63 @@ document.querySelector('.nav-links').style.cssText = '';
 
 // Init Lucide icons
 lucide.createIcons();
+</script>
+<script>
+// Capturar UTMs y fbclid
+function getUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_content: params.get('utm_content') || '',
+    utm_term: params.get('utm_term') || '',
+    fbclid: params.get('fbclid') || '',
+  };
+}
+
+// Capturar fbc y fbp de cookies
+function getFbCookies() {
+  const cookies = document.cookie.split(';').reduce((acc, c) => {
+    const [k, v] = c.trim().split('=');
+    acc[k] = v;
+    return acc;
+  }, {});
+  return {
+    fbc: cookies['_fbc'] || '',
+    fbp: cookies['_fbp'] || '',
+  };
+}
+
+// Generar event_id único por sesión
+function generateEventId() {
+  return 'ev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+const urlParams = getUrlParams();
+const fbCookies = getFbCookies();
+const pageEventId = generateEventId();
+
+sessionStorage.setItem('avalluo_tracking', JSON.stringify({
+  ...urlParams,
+  ...fbCookies,
+  event_id: pageEventId,
+  landing_name: 'activos-industriales'
+}));
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  event: 'landing_view',
+  landing_name: 'activos-industriales',
+  event_id: pageEventId
+});
+
+if(typeof fbq !== 'undefined') {
+  fbq('track', 'ViewContent', {
+    content_name: 'activos-industriales',
+    content_category: 'landing'
+  }, { eventID: pageEventId });
+}
 </script>
 </body>
 </html>
