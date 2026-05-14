@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>avalluo — Avalúos de Activos Industriales, Embarcaciones y Aeronaves | México</title>
+<meta name="description" content="Plataforma nacional de avalúos con tecnología propia, base de datos exclusiva y valuadores certificados en los 32 estados. Maquinaria industrial, embarcaciones y aeronaves.">
+<meta name="keywords" content="avalúo maquinaria industrial, avalúo embarcaciones México, avalúo aeronaves, avalúo activos concurso mercantil, valuador certificado México, avalúo NMX-Z-013">
+<meta name="author" content="avalluo">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://avalluo.com/">
+<link rel="icon" type="image/png" href="Avalluo Logo.png">
+<link rel="apple-touch-icon" href="Avalluo Logo.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://avalluo.com/">
+<meta property="og:title" content="avalluo — Avalúos con Tecnología Propia">
+<meta property="og:description" content="Red nacional de valuadores certificados respaldada por tecnología, base de datos y metodología propia. Maquinaria, embarcaciones y aeronaves.">
+<meta property="og:image" content="https://avalluo.com/og-image.jpg">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="avalluo">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="avalluo — Avalúos con Tecnología Propia">
+<meta name="twitter:description" content="Red nacional de valuadores certificados respaldada por tecnología, base de datos y metodología propia.">
+<meta name="twitter:image" content="https://avalluo.com/og-image.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --teal:#1f9095;
+  --blue:#2d43b3;
+  --teal-light:rgba(31,144,149,0.12);
+  --blue-light:rgba(45,67,179,0.12);
+  --grad:linear-gradient(135deg,#1f9095,#2d43b3);
+  --grad-text:linear-gradient(135deg,#1f9095 0%,#2d43b3 100%);
+  --ink:#0D0D14;
+  --ink2:#1a1a2e;
+  --gray:#5a6070;
+  --gray2:#9099aa;
+  --off:#f7f8fc;
+  --white:#ffffff;
+  --border:rgba(0,0,0,0.07);
+  --border2:rgba(31,144,149,0.2);
+  --shadow:0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg:0 16px 48px rgba(0,0,0,0.12);
+  --r:14px;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Ubuntu',system-ui,sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ─── UTILS ─── */
+.grad-text{background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.container{max-width:1200px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.container{padding:0 24px}}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;background:rgba(255,255,255,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:32px;display:block}
+.nav-logo-text{font-size:22px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--grad);color:var(--white)!important;padding:10px 22px;border-radius:8px;font-weight:700!important;font-size:14px!important;transition:opacity .2s!important}
+.nav-cta:hover{opacity:.88}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:68px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#f0fdfd 0%,#eef1fc 60%,#f7f8ff 100%);z-index:0}
+.hero-blob{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(31,144,149,0.08) 0%,transparent 70%);top:-200px;right:-200px;z-index:0}
+.hero-blob2{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(45,67,179,0.06) 0%,transparent 70%);bottom:-100px;left:-100px;z-index:0}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;width:100%;max-width:1200px;margin:0 auto;padding:80px 48px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--teal-light);border:1px solid var(--border2);color:var(--teal);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:28px}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.hero-h1{font-size:clamp(42px,5vw,72px);font-weight:700;line-height:1.05;letter-spacing:-0.03em;margin-bottom:24px}
+.hero-sub{font-size:18px;line-height:1.7;color:var(--gray);max-width:500px;margin-bottom:40px;font-weight:400}
+.hero-actions{display:flex;align-items:center;gap:16px;margin-bottom:48px;flex-wrap:wrap}
+.btn-grad{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:var(--white);padding:16px 32px;border-radius:10px;font-size:16px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .25s;font-family:'Ubuntu',sans-serif}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(31,144,149,0.35)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:var(--ink);padding:16px 28px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;border:1.5px solid var(--border);background:rgba(255,255,255,0.8);cursor:pointer;transition:all .2s;font-family:'Ubuntu',sans-serif}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.hero-trust{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--gray2)}
+.trust-dot{width:4px;height:4px;border-radius:50%;background:var(--gray2)}
+.hero-trust span{font-weight:500}
+
+/* HERO VISUAL */
+.hero-right{position:relative;display:flex;justify-content:center;align-items:flex-end}
+.hero-mascot{width:100%;max-width:480px;position:relative;z-index:2;background:transparent}
+.hero-mascot img{width:100%;display:block}
+.hero-stat-float{position:absolute;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow-lg);z-index:3}
+.hero-stat-float.s1{top:20px;left:-20px}
+.hero-stat-float.s2{bottom:40px;right:-20px}
+.stat-val{font-size:22px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-lbl{font-size:11px;color:var(--gray2);margin-top:3px;font-weight:500}
+
+/* ─── STRIP NUMBERS ─── */
+.strip{background:var(--ink2);padding:40px 0}
+.strip-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08)}
+.strip-item{padding:28px 32px;background:var(--ink2)}
+.strip-num{font-size:36px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px}
+.strip-lbl{font-size:13px;color:rgba(255,255,255,0.5);font-weight:400;line-height:1.4}
+
+/* ─── SECTION BASE ─── */
+.section{padding:96px 0}
+.section-off{padding:96px 0;background:var(--off)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--grad);border-radius:1px;display:block}
+.section-h2{font-size:clamp(32px,3.5vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.75;max-width:580px}
+
+/* ─── DIFERENCIADORES ─── */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.diff-card{background:var(--white);padding:36px 32px;transition:background .2s;position:relative;overflow:hidden}
+.diff-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.diff-card:hover{background:linear-gradient(160deg,rgba(31,144,149,0.03),rgba(45,67,179,0.04))}
+.diff-card:hover::after{transform:scaleX(1)}
+.diff-icon{width:48px;height:48px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;flex-shrink:0}
+.diff-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em}
+.diff-desc{font-size:14px;color:var(--gray);line-height:1.7}
+.diff-highlight{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 12px;border-radius:100px}
+
+/* ─── PARA QUIÉN ─── */
+.clients-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.client-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:32px;cursor:pointer;transition:all .25s;position:relative}
+.client-card:hover{border-color:transparent;box-shadow:0 8px 32px rgba(31,144,149,0.15),0 0 0 1.5px var(--teal)}
+.client-card:hover .client-cta{opacity:1;transform:translateY(0)}
+.client-emoji{font-size:36px;margin-bottom:16px;display:block}
+.client-title{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.client-desc{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px}
+.client-tags{display:flex;flex-wrap:wrap;gap:6px}
+.client-tag{font-size:11px;font-weight:500;color:var(--blue);background:var(--blue-light);padding:3px 10px;border-radius:100px}
+.client-cta{position:absolute;bottom:20px;right:20px;font-size:12px;font-weight:700;color:var(--teal);opacity:0;transform:translateY(4px);transition:all .25s}
+
+/* ─── PROCESO ─── */
+.proceso-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:56px}
+.proceso-steps{display:flex;flex-direction:column;gap:0}
+.proceso-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(0,0,0,0.05);cursor:pointer;transition:all .2s}
+.proceso-step:last-child{border-bottom:none}
+.proceso-step:hover .ps-num{background:var(--grad)}
+.ps-num{width:36px;height:36px;border-radius:50%;background:var(--teal-light);border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:2px;transition:all .3s}
+.proceso-step:hover .ps-num{color:white}
+.ps-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.ps-desc{font-size:13px;color:var(--gray);line-height:1.65}
+.ps-badge{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:3px 10px;border-radius:100px}
+.proceso-visual{background:var(--white);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.pv-header{background:var(--ink2);padding:18px 22px;display:flex;align-items:center;gap:10px}
+.pv-dots{display:flex;gap:6px}
+.pv-dot{width:10px;height:10px;border-radius:50%}
+.pv-dot.r{background:#FF5F57}.pv-dot.y{background:#FEBC2E}.pv-dot.g{background:#28C840}
+.pv-title{font-size:12px;font-weight:500;color:rgba(255,255,255,0.5);margin-left:8px}
+.pv-body{padding:24px}
+.pv-project{background:var(--off);border-radius:10px;padding:16px;margin-bottom:16px}
+.pv-project-name{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.pv-project-meta{font-size:11px;color:var(--gray2)}
+.pv-badge-green{display:inline-block;background:rgba(0,180,100,0.1);color:#00a855;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;margin-left:8px}
+.pv-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.pv-kpi{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.pv-kpi-val{font-size:18px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pv-kpi-lbl{font-size:10px;color:var(--gray2);margin-top:2px}
+.pv-track-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray2);margin-bottom:12px}
+.pv-track-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.pv-track-label{font-size:11px;color:var(--gray);width:110px;flex-shrink:0}
+.pv-track-bar-bg{flex:1;height:6px;background:var(--off);border-radius:3px;overflow:hidden}
+.pv-track-bar{height:100%;border-radius:3px;background:var(--grad)}
+.pv-track-pct{font-size:11px;font-weight:700;color:var(--ink);width:36px;text-align:right}
+.pv-status{background:rgba(31,144,149,0.06);border:1px solid rgba(31,144,149,0.15);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--teal);font-weight:600;display:flex;align-items:center;gap:8px}
+.pv-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal);display:block;flex-shrink:0}
+
+/* ─── TECNOLOGÍA ─── */
+.tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:56px}
+.tech-card{border-radius:var(--r);padding:36px;border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
+.tech-card::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:var(--grad);opacity:0;transition:opacity .3s;z-index:0}
+.tech-card:hover::before{opacity:0.03}
+.tech-card>*{position:relative;z-index:1}
+.tech-card:hover{border-color:rgba(31,144,149,0.4);box-shadow:0 8px 32px rgba(31,144,149,0.1)}
+.tech-num{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.tech-title{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-0.02em;line-height:1.2}
+.tech-desc{font-size:14px;color:var(--gray);line-height:1.7}
+.tech-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tech-pill{font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-light);padding:4px 12px;border-radius:100px}
+
+/* ─── VALUADORES ─── */
+.valuadores-section{background:var(--ink2);padding:96px 0;position:relative;overflow:hidden}
+.valuadores-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(31,144,149,0.12) 0%,transparent 60%)}
+.val-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.val-benefits{display:flex;flex-direction:column;gap:20px;margin-top:40px}
+.val-benefit{display:flex;gap:16px;align-items:flex-start}
+.val-benefit-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,rgba(31,144,149,0.25),rgba(45,67,179,0.25));border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.val-benefit-title{font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px}
+.val-benefit-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
+.val-form{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:36px}
+.val-form-title{font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px}
+.val-form-sub{font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:28px;line-height:1.5}
+.val-input{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 16px;font-size:14px;color:var(--white);font-family:'Ubuntu',sans-serif;margin-bottom:12px;outline:none;transition:border-color .2s}
+.val-input::placeholder{color:rgba(255,255,255,0.25)}
+.val-input:focus{border-color:var(--teal)}
+.val-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center}
+.btn-grad-full{width:100%;background:var(--grad);color:var(--white);padding:14px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Ubuntu',sans-serif;transition:all .2s;margin-top:4px}
+.btn-grad-full:hover{opacity:.88;transform:translateY(-1px)}
+.val-note{font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:12px}
+
+/* ─── HOOKS / TESTIMONIOS ─── */
+.hooks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.hook-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all .25s}
+.hook-card:hover{box-shadow:0 8px 32px rgba(31,144,149,0.12);border-color:rgba(31,144,149,0.3)}
+.hook-quote{font-size:15px;line-height:1.7;color:var(--ink);margin-bottom:20px;font-style:italic}
+.hook-quote::before{content:'"';font-size:32px;color:var(--teal);line-height:0;vertical-align:-10px;margin-right:4px;font-style:normal}
+.hook-author{display:flex;align-items:center;gap:12px}
+.hook-avatar{width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:16px;color:white;font-weight:700}
+.hook-name{font-size:14px;font-weight:700;color:var(--ink)}
+.hook-role{font-size:12px;color:var(--gray2)}
+
+/* ─── CTA FINAL ─── */
+.cta-section{padding:96px 0;background:linear-gradient(160deg,#0a1628 0%,#0d1f2d 40%,#091520 100%);position:relative;overflow:hidden}
+.cta-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(31,144,149,0.15) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-inner{position:relative;z-index:1;text-align:center;max-width:720px;margin:0 auto;padding:0 48px}
+.cta-h2{font-size:clamp(36px,4vw,60px);font-weight:700;color:var(--white);letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px}
+.cta-sub{font-size:17px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:48px}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.cta-contact{display:flex;align-items:center;gap:24px;justify-content:center;flex-wrap:wrap}
+.cta-contact-item{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.4)}
+.cta-contact-item a{color:rgba(255,255,255,0.7);text-decoration:none;transition:color .2s}
+.cta-contact-item a:hover{color:var(--white)}
+.cta-contact-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.2)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink2);padding:36px 0;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 48px}
+.footer-logo-text{font-size:18px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.footer-links{display:flex;gap:20px;list-style:none}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,0.7)}
+
+/* ─── DASHBOARD SHOWCASE ─── */
+.dash-showcase{margin-top:80px;padding-top:80px;border-top:1px solid var(--border)}
+.dash-showcase-header{text-align:center;margin-bottom:60px}
+.dash-showcase-title{font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:12px}
+.dash-showcase-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px;margin:0 auto}
+.dash-visual{position:relative;max-width:860px;margin:0 auto;padding:24px 0 32px}
+.dash-float-top{position:absolute;top:0;right:20px;background:white;border-radius:12px;padding:11px 16px;box-shadow:0 6px 24px rgba(0,0,0,0.1);border:1px solid var(--border);display:flex;align-items:center;gap:10px;z-index:10;animation:float 4s ease-in-out infinite;white-space:nowrap}
+.dash-float-bottom{position:absolute;bottom:8px;left:20px;background:white;border-radius:12px;padding:11px 16px;box-shadow:0 6px 24px rgba(0,0,0,0.1);border:1px solid var(--border);display:flex;align-items:center;gap:10px;z-index:10;animation:float 5s ease-in-out infinite reverse;white-space:nowrap}
+.dash-float-icon{font-size:20px;flex-shrink:0}
+.dash-float-strong{display:block;font-size:12px;font-weight:700;color:var(--ink)}
+.dash-float-span{font-size:11px;color:var(--gray2)}
+.dash-card{background:white;border-radius:18px;box-shadow:0 20px 64px rgba(0,0,0,0.13);overflow:hidden;border:1px solid var(--border)}
+.dash-topbar{background:var(--ink2);padding:14px 20px;display:flex;align-items:center;gap:12px}
+.dash-db-dots{display:flex;gap:6px}
+.dash-db-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2)}
+.dash-db-dot:first-child{background:#FF5F57}.dash-db-dot:nth-child(2){background:#FEBC2E}.dash-db-dot:nth-child(3){background:#28C840}
+.dash-title-bar{color:rgba(255,255,255,0.45);font-size:13px;font-weight:500;flex:1;text-align:center}
+.dash-body{display:grid;grid-template-columns:190px 1fr;min-height:360px}
+.dash-sidebar{background:var(--ink2);padding:16px 0}
+.dash-nav-label{padding:14px 16px 5px;font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+.dash-nav-item{padding:9px 16px;font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:8px;cursor:pointer;transition:all .15s}
+.dash-nav-item.active{background:rgba(255,255,255,0.06);color:white;border-left:2px solid var(--teal)}
+.dash-nav-item svg{width:14px;height:14px;stroke-width:1.5;flex-shrink:0}
+.dash-content{padding:20px;background:white}
+.dash-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.dash-project-title{font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-0.02em}
+.dash-project-sub{font-size:11px;color:var(--gray2);margin-top:2px}
+.dash-badge-teal{background:var(--teal-light);color:var(--teal);font-size:10px;font-weight:700;padding:6px 12px;border-radius:100px;border:1px solid var(--border2);letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.dash-kpi{background:var(--off);border-radius:10px;padding:12px;border:1px solid var(--border)}
+.dash-kpi-num{font-size:20px;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em}
+.dash-kpi-lbl{font-size:10px;color:var(--gray2);font-weight:500;margin-top:2px}
+.dash-kpi-delta{font-size:10px;color:var(--teal);font-weight:500;margin-top:2px}
+.dash-pareto{background:var(--off);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px}
+.dash-pareto-lbl{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.dash-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.dash-bar-name{font-size:10px;color:var(--gray);width:115px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash-bar-track{flex:1;background:white;border-radius:100px;height:6px;overflow:hidden}
+.dash-bar-fill{height:100%;border-radius:100px;background:var(--grad)}
+.dash-bar-pct{font-size:10px;color:var(--gray2);width:34px;text-align:right}
+.dash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dash-btn{background:var(--ink2);color:white;border:none;border-radius:10px;padding:10px 14px;font-size:11px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:opacity .2s;font-family:'Ubuntu',sans-serif}
+.dash-btn:hover{opacity:.8}
+.dash-btn.outline{background:transparent;color:var(--ink);border:1.5px solid var(--border)}
+.dash-btn svg{width:13px;height:13px;stroke-width:1.5;flex-shrink:0}
+@media(max-width:700px){.dash-body{grid-template-columns:1fr}.dash-sidebar{display:none}.dash-float-top,.dash-float-bottom{display:none}}
+
+/* ─── MAPA COBERTURA ─── */
+.mapa-section{padding:96px 0;background:var(--ink2);position:relative;overflow:hidden}
+.mapa-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(31,144,149,0.12) 0%,transparent 65%);pointer-events:none}
+.mapa-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.mapa-copy .eyebrow{color:var(--teal)}
+.mapa-copy .section-h2{color:white}
+.mapa-copy .section-sub{color:rgba(255,255,255,0.55)}
+.mapa-estado-activo{display:flex;flex-wrap:wrap;gap:6px;margin-top:28px}
+.mapa-chip{display:inline-block;font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px;background:rgba(31,144,149,0.15);border:1px solid rgba(31,144,149,0.3);color:rgba(255,255,255,0.75)}
+.mapa-svg-wrap{position:relative}
+.mapa-tooltip{position:absolute;background:var(--white);color:var(--ink);font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.2);pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;z-index:10;transform:translate(-50%,-140%)}
+#mexico-map path{fill:rgba(255,255,255,0.05);stroke:rgba(255,255,255,0.12);stroke-width:0.8;transition:fill .2s,filter .2s;cursor:default}
+#mexico-map path.covered{fill:var(--teal);opacity:.85;cursor:pointer}
+#mexico-map path.covered:hover{fill:#25adb3;filter:drop-shadow(0 0 6px rgba(31,144,149,0.6));opacity:1}
+@media(max-width:900px){.mapa-inner{grid-template-columns:1fr;gap:40px}}
+
+/* ─── WIDGET FLOTANTE ─── */
+.float-widget{position:fixed;bottom:28px;right:28px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.fw-toggle{width:56px;height:56px;border-radius:50%;background:var(--grad);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(31,144,149,0.45);transition:transform .2s;color:white}
+.fw-toggle:hover{transform:scale(1.08)}
+.fw-toggle svg{width:26px;height:26px;transition:transform .3s}
+.fw-buttons{display:flex;flex-direction:column;gap:10px;align-items:flex-end;transition:all .3s;transform-origin:bottom right}
+.fw-buttons.hidden{opacity:0;pointer-events:none;transform:scale(0.85) translateY(10px)}
+.fw-btn{display:flex;align-items:center;gap:10px;background:white;border:none;border-radius:100px;padding:10px 18px 10px 14px;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.12);text-decoration:none;transition:transform .15s,box-shadow .15s;white-space:nowrap;font-family:'Ubuntu',sans-serif}
+.fw-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.fw-btn-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fw-btn.wa .fw-btn-icon{background:#25D366}
+.fw-btn.call .fw-btn-icon{background:var(--teal)}
+.fw-btn.meet .fw-btn-icon{background:var(--blue)}
+.fw-btn svg{width:16px;height:16px;stroke:white;stroke-width:2.2;fill:none}
+.fw-label{font-size:11px;color:var(--gray2);margin-top:1px;font-weight:400}
+@media(max-width:600px){.fw-btn span.fw-text{display:none}.fw-btn{padding:10px;border-radius:50%}.fw-btn .fw-label{display:none}}
+
+/* ─── CHAT IA ─── */
+.chat-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:990;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px)}
+.chat-overlay.open{opacity:1;pointer-events:all}
+.chat-window{position:fixed;bottom:100px;right:28px;width:380px;max-height:560px;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);z-index:995;display:flex;flex-direction:column;transform:scale(0.9) translateY(20px);opacity:0;transition:all .3s;transform-origin:bottom right}
+.chat-window.open{transform:scale(1) translateY(0);opacity:1}
+.chat-header{background:var(--grad);border-radius:20px 20px 0 0;padding:16px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.chat-avatar{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.chat-agent-name{font-size:15px;font-weight:700;color:white}
+.chat-agent-status{font-size:11px;color:rgba(255,255,255,0.75);margin-top:1px}
+.chat-close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:background .2s}
+.chat-close:hover{background:rgba(255,255,255,0.15);color:white}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;min-height:0}
+.chat-msg{max-width:82%;padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.55}
+.chat-msg.bot{background:var(--off);color:var(--ink);border-radius:4px 16px 16px 16px;align-self:flex-start}
+.chat-msg.user{background:var(--grad);color:white;border-radius:16px 4px 16px 16px;align-self:flex-end}
+.chat-msg.typing{display:flex;align-items:center;gap:4px;padding:12px 16px}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:var(--gray2);animation:typingBounce 1.2s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}
+.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.chat-input-area{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0}
+.chat-input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;font-size:13px;font-family:'Ubuntu',sans-serif;color:var(--ink);outline:none;transition:border-color .2s;resize:none}
+.chat-input:focus{border-color:var(--teal)}
+.chat-send{background:var(--grad);border:none;border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity .2s}
+.chat-send:hover{opacity:.85}
+.chat-send svg{width:16px;height:16px;stroke:white;stroke-width:2.5;fill:none}
+@media(max-width:480px){.chat-window{width:calc(100vw - 32px);right:16px;bottom:88px}}
+
+/* ─── ANIMACIONES ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.animate-float{animation:float 4s ease-in-out infinite}
+.fade-up{opacity:0;animation:fadeUp .7s ease forwards}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:60px 24px}
+  .hero-right{display:none}
+  .diff-grid{grid-template-columns:1fr}
+  .clients-grid{grid-template-columns:1fr}
+  .proceso-wrap{grid-template-columns:1fr}
+  .tech-grid{grid-template-columns:1fr}
+  .val-grid{grid-template-columns:1fr}
+  .hooks-grid{grid-template-columns:1fr}
+  .strip-inner{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+
+/* ─── LUCIDE ICONS ─── */
+.diff-icon{color:white}
+.diff-icon svg{width:24px;height:24px;stroke:white;stroke-width:1.5;fill:none}
+.val-benefit-icon{color:white}
+.val-benefit-icon svg{width:20px;height:20px;stroke:white;stroke-width:1.5;fill:none}
+.client-emoji{color:var(--teal)}
+.client-emoji svg{width:36px;height:36px;stroke:var(--teal);stroke-width:1.5;fill:none}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://avalluo.com/#organization",
+      "name": "avalluo",
+      "url": "https://avalluo.com",
+      "logo": "https://avalluo.com/logo.png",
+      "email": "atencion@avalluo.com",
+      "areaServed": "MX",
+      "description": "Plataforma nacional de avalúos con tecnología, base de datos y metodología propia. Red de valuadores certificados en los 32 estados de México.",
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://avalluo.com/#website",
+      "url": "https://avalluo.com",
+      "name": "avalluo",
+      "publisher": { "@id": "https://avalluo.com/#organization" }
+    },
+    {
+      "@type": "Service",
+      "serviceType": "Avalúo de Activos Industriales",
+      "provider": { "@id": "https://avalluo.com/#organization" },
+      "areaServed": "MX",
+      "description": "Avalúos de maquinaria industrial, embarcaciones y aeronaves bajo norma NMX-Z-013 con tecnología propia y valuadores certificados.",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://avalluo.com/#contacto"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué tipos de activos valúa avalluo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Maquinaria industrial, embarcaciones, aeronaves, equipo de cómputo, mobiliario industrial y activos productivos en general. Especializados en inventarios de gran escala para maquiladoras y procesos de concurso mercantil."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Tienen cobertura nacional?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Contamos con una red de valuadores certificados en los 32 estados de México, asignados por especialidad y ubicación geográfica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Bajo qué norma se realizan los avalúos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Todos nuestros avalúos se realizan bajo la norma mexicana NMX-Z-013, con metodología propia documentada y trazabilidad total del proceso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo puedo solicitar un avalúo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Escríbenos a atencion@avalluo.com o contáctanos por WhatsApp. En menos de 24 horas te respondemos con una propuesta."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="Avalluo Logo (1).png" alt="avalluo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#diferenciadores">Tecnología</a></li>
+      <li><a href="#para-quien">Servicios</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#valuadores">Valuadores</a></li>
+      <li><a href="#contacto" class="nav-cta">Solicitar Avalúo</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag fade-up">Plataforma Nacional de Avalúos</div>
+      <h1 class="hero-h1 fade-up delay-1">
+        Conoce el valor<br>real de lo que<br><span class="grad-text">tienes en tus manos.</span>
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        Tecnología, metodología y red de valuadores certificados. Todo en una plataforma diseñada para darte certeza, velocidad y trazabilidad en cada avalúo.
+      </p>
+      <div class="hero-actions fade-up delay-3">
+        <a href="#contacto" class="btn-grad">
+          Solicitar un avalúo
+          <i data-lucide="arrow-right" width="16" height="16"></i>
+        </a>
+        <a href="#proceso" class="btn-ghost">¿Cómo funciona?</a>
+      </div>
+      <div class="hero-trust fade-up delay-4">
+        <span>Red nacional de valuadores certificados</span>
+        <div class="trust-dot"></div>
+        <span>Tecnología 100% propia</span>
+        <div class="trust-dot"></div>
+        <span>Base de datos exclusiva</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-mascot animate-float">
+        <img src="Capi y Avalluo.png" alt="Capi y avalluo">
+      </div>
+      <div class="hero-stat-float s1">
+        <div class="stat-val">+12,000</div>
+        <div class="stat-lbl">activos valuados</div>
+      </div>
+      <div class="hero-stat-float s2">
+        <div class="stat-val">32 estados</div>
+        <div class="stat-lbl">cobertura nacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner container" style="max-width:100%;padding:0">
+    <div class="strip-item">
+      <div class="strip-num" data-count="90000" data-prefix="+" data-suffix="" data-format="k">+90K</div>
+      <div class="strip-lbl">activos procesables<br>por proyecto</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num" data-count="70" data-prefix="–" data-suffix="%">–70%</div>
+      <div class="strip-lbl">reducción en tiempo<br>vs método tradicional</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num" data-count="32" data-prefix="" data-suffix="">32</div>
+      <div class="strip-lbl">estados con valuadores<br>certificados activos</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">NMX</div>
+      <div class="strip-lbl">metodología propia<br>bajo norma Z-013</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAPA COBERTURA -->
+<section class="mapa-section" id="cobertura">
+  <div class="mapa-bg-glow"></div>
+  <div class="mapa-inner">
+    <div class="mapa-copy">
+      <div class="eyebrow">Cobertura nacional</div>
+      <h2 class="section-h2">Valuadores certificados<br><span class="grad-text">en 32 estados</span></h2>
+      <p class="section-sub">Nuestra red cubre todo el territorio mexicano. Desde Baja California hasta Quintana Roo, tenemos valuadores certificados listos para inspeccionar en campo.</p>
+      <div class="mapa-estado-activo">
+        <span class="mapa-chip">Nuevo León</span><span class="mapa-chip">CDMX</span><span class="mapa-chip">Jalisco</span>
+        <span class="mapa-chip">Coahuila</span><span class="mapa-chip">Tamaulipas</span><span class="mapa-chip">Chihuahua</span>
+        <span class="mapa-chip">Sonora</span><span class="mapa-chip">Veracruz</span><span class="mapa-chip">Puebla</span>
+        <span class="mapa-chip">Guanajuato</span><span class="mapa-chip">Querétaro</span><span class="mapa-chip">+21 más</span>
+      </div>
+    </div>
+    <div class="mapa-svg-wrap">
+      <div class="mapa-tooltip" id="mapa-tooltip"></div>
+      <svg id="mexico-map" style="width:100%;height:auto"></svg>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIADORES -->
+<section class="section" id="diferenciadores">
+  <div class="container">
+    <div class="eyebrow">Por qué avalluo</div>
+    <h2 class="section-h2">Tres pilares que nos <span class="grad-text">hacen únicos</span></h2>
+    <p class="section-sub">No somos un despacho tradicional. Somos una plataforma tecnológica que opera con la precisión de un sistema y la confianza de un equipo certificado.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-icon"><i data-lucide="monitor"></i></div>
+        <div class="diff-title">Tecnología Propia</div>
+        <div class="diff-desc">Nuestra plataforma digital gestiona todo el proceso de avalúo: importación de inventarios, categorización con IA, inspección guiada en campo y generación del dictamen. Desarrollada 100% internamente para el mercado mexicano.</div>
+        <span class="diff-highlight">Plataforma exclusiva avalluo</span>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon"><i data-lucide="database"></i></div>
+        <div class="diff-title">Base de Datos Propia</div>
+        <div class="diff-desc">Años de avalúos reales generan nuestra base de datos de valores de mercado. Precios actualizados de maquinaria industrial, embarcaciones y aeronaves que ningún competidor tiene. Tu dictamen se apoya en inteligencia real, no en estimaciones.</div>
+        <span class="diff-highlight">Datos exclusivos del mercado mexicano</span>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon"><i data-lucide="ruler"></i></div>
+        <div class="diff-title">Metodología Propia</div>
+        <div class="diff-desc">Desarrollamos nuestra propia metodología de valuación, documentada y auditada bajo la norma NMX-Z-013. Cada factor —físico, funcional y de obsolescencia— se calcula con criterios claros, trazables y reproducibles.</div>
+        <span class="diff-highlight">NMX-Z-013 · Trazabilidad total</span>
+      </div>
+    </div>
+
+    <!-- Dashboard Showcase -->
+    <div class="dash-showcase">
+      <div class="dash-showcase-header">
+        <h3 class="dash-showcase-title">La plataforma que hace el trabajo pesado</h3>
+        <p class="dash-showcase-sub">Importa tu inventario, la IA categoriza y prioriza, tu valuador inspecciona en campo y el sistema genera el dictamen firmado. Todo en un solo lugar.</p>
+      </div>
+      <div class="dash-visual">
+        <div class="dash-float-top">
+          <span class="dash-float-icon">🤖</span>
+          <div>
+            <strong class="dash-float-strong">IA categorizó 1,951 ítems</strong>
+            <span class="dash-float-span">en 3.2 segundos · 94.8% precisión</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-topbar">
+            <div class="dash-db-dots"><div class="dash-db-dot"></div><div class="dash-db-dot"></div><div class="dash-db-dot"></div></div>
+            <div class="dash-title-bar">avalluo — Proyecto Maquiladora TechCorp</div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-sidebar">
+              <div class="dash-nav-label">Navegación</div>
+              <div class="dash-nav-item">
+                <i data-lucide="list"></i>
+                Proyectos
+              </div>
+              <div class="dash-nav-item active">
+                <i data-lucide="bar-chart-2"></i>
+                Avalúo Activos
+              </div>
+              <div class="dash-nav-item">
+                <i data-lucide="smartphone"></i>
+                App de Campo
+              </div>
+              <div class="dash-nav-item">
+                <i data-lucide="file-text"></i>
+                Reportes
+              </div>
+              <div class="dash-nav-label">Servicios</div>
+              <div class="dash-nav-item">
+                <i data-lucide="building-2"></i>
+                Actas Corp.
+              </div>
+            </div>
+            <div class="dash-content">
+              <div class="dash-header">
+                <div>
+                  <div class="dash-project-title">Maquiladora TechCorp</div>
+                  <div class="dash-project-sub">Concurso Mercantil · Monterrey, NL · 1,951 ítems</div>
+                </div>
+                <div class="dash-badge-teal">En análisis</div>
+              </div>
+              <div class="dash-kpis">
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num">$13.6M</div>
+                  <div class="dash-kpi-lbl">VNR Total USD</div>
+                  <div class="dash-kpi-delta">▲ VNR calculado</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num">523</div>
+                  <div class="dash-kpi-lbl">A inspección física</div>
+                  <div class="dash-kpi-delta">84% del valor</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num">20</div>
+                  <div class="dash-kpi-lbl">Categorías</div>
+                  <div class="dash-kpi-delta">4 prioritarias</div>
+                </div>
+              </div>
+              <div class="dash-pareto">
+                <div class="dash-pareto-lbl">Pareto VNR por Categoría</div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Infraest. de Red</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:68%"></div></div>
+                  <div class="dash-bar-pct">67.7%</div>
+                </div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Comp. Electrónicos</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:8%"></div></div>
+                  <div class="dash-bar-pct">6.0%</div>
+                </div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Equipo de Cómputo</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:6%"></div></div>
+                  <div class="dash-bar-pct">5.7%</div>
+                </div>
+                <div class="dash-bar-row">
+                  <div class="dash-bar-name">Mob. Industrial</div>
+                  <div class="dash-bar-track"><div class="dash-bar-fill" style="width:5%"></div></div>
+                  <div class="dash-bar-pct">4.9%</div>
+                </div>
+              </div>
+              <div class="dash-actions">
+                <button class="dash-btn">
+                  <i data-lucide="smartphone"></i>
+                  Enviar a campo
+                </button>
+                <button class="dash-btn outline">
+                  <i data-lucide="file-text"></i>
+                  Generar reporte
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-float-bottom">
+          <span class="dash-float-icon">✍️</span>
+          <div>
+            <strong class="dash-float-strong">Reporte generado · firmado con e.firma</strong>
+            <span class="dash-float-span">Válido ante NMX-Z-013 · Hash: a7f2c…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="section-off" id="para-quien">
+  <div class="container">
+    <div class="eyebrow">¿Quién nos necesita?</div>
+    <h2 class="section-h2">Tu activo tiene valor. <span class="grad-text">Descúbrelo.</span></h2>
+    <p class="section-sub">Desde una empresa con maquinaria parada hasta un fondo buscando certeza antes de invertir. Si hay un activo de por medio, avalluo tiene la solución.</p>
+    <div class="clients-grid">
+      <div class="client-card">
+        <span class="client-emoji"><i data-lucide="factory"></i></span>
+        <div class="client-title">Empresas Industriales</div>
+        <div class="client-desc">Necesitas conocer el valor real de tu maquinaria para revaluación contable, crédito, venta o concurso mercantil. Tenemos experiencia con inventarios de miles de ítems.</div>
+        <div class="client-tags">
+          <span class="client-tag">Maquinaria pesada</span>
+          <span class="client-tag">Líneas de producción</span>
+          <span class="client-tag">Concurso mercantil</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji"><i data-lucide="anchor"></i></span>
+        <div class="client-title">Embarcaciones y Marinas</div>
+        <div class="client-desc">Avalúos especializados de embarcaciones comerciales, de pesca o recreativas. Valoramos con acceso a bases de datos internacionales de mercado secundario.</div>
+        <div class="client-tags">
+          <span class="client-tag">Flota comercial</span>
+          <span class="client-tag">Embarcaciones de pesca</span>
+          <span class="client-tag">Activos marítimos</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji"><i data-lucide="plane"></i></span>
+        <div class="client-title">Aeronaves</div>
+        <div class="client-desc">Valuación de aeronaves privadas, comerciales y de carga. Acceso a precios internacionales (Aircraft Bluebook, VREF) y valuadores especializados en aviación.</div>
+        <div class="client-tags">
+          <span class="client-tag">Aviación privada</span>
+          <span class="client-tag">Flota comercial</span>
+          <span class="client-tag">Helicópteros</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji"><i data-lucide="receipt-text"></i></span>
+        <div class="client-title">Avalúos para efectos Fiscales</div>
+        <div class="client-desc">Créditos fiscales, procesos administrativos, juicios, procedimientos de embargo ante SAT, IMSS, INFONAVIT y Tribunales Administrativos y Jurisdiccionales.</div>
+        <div class="client-tags">
+          <span class="client-tag">SAT</span>
+          <span class="client-tag">IMSS / INFONAVIT</span>
+          <span class="client-tag">Embargo fiscal</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji"><i data-lucide="home"></i></span>
+        <div class="client-title">Avalúos Referidos y de Mejoras</div>
+        <div class="client-desc">En la venta de inmuebles para casa habitación o comerciales, estos avalúos son válidos para justificar la afectación en el pago justo de ISR e IVA en operaciones de transacción de inmuebles ante Notario Público.</div>
+        <div class="client-tags">
+          <span class="client-tag">ISR / IVA</span>
+          <span class="client-tag">Notario Público</span>
+          <span class="client-tag">Transmisión inmobiliaria</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji"><i data-lucide="scale"></i></span>
+        <div class="client-title">Procesos Legales</div>
+        <div class="client-desc">Síndicos, liquidadores y despachos jurídicos que requieren avalúos con validez legal para concursos mercantiles, divorcios, herencias o litigios.</div>
+        <div class="client-tags">
+          <span class="client-tag">Concurso mercantil</span>
+          <span class="client-tag">Liquidación de activos</span>
+          <span class="client-tag">Litigio</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+      <div class="client-card">
+        <span class="client-emoji"><i data-lucide="building-2"></i></span>
+        <div class="client-title">Maquiladoras y manufactura</div>
+        <div class="client-desc">Inventarios complejos de plantas de manufactura, especialmente en la frontera norte. Nuestra plataforma procesa miles de ítems con precisión y en tiempo récord.</div>
+        <div class="client-tags">
+          <span class="client-tag">Frontera norte</span>
+          <span class="client-tag">T-MEC / nearshoring</span>
+          <span class="client-tag">Gran escala</span>
+        </div>
+        <span class="client-cta">Solicitar avalúo →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section" id="proceso">
+  <div class="container">
+    <div class="eyebrow">Cómo funciona</div>
+    <h2 class="section-h2">Trazabilidad total,<br><span class="grad-text">de inicio a fin.</span></h2>
+    <p class="section-sub">Cada etapa queda registrada en nuestra plataforma. Sabes en qué paso está tu avalúo en todo momento.</p>
+    <div class="proceso-wrap">
+      <div class="proceso-steps">
+        <div class="proceso-step">
+          <div class="ps-num">01</div>
+          <div>
+            <div class="ps-title">Ingesta del inventario</div>
+            <div class="ps-desc">Nos compartes el inventario en cualquier formato. Nuestra IA normaliza columnas, limpia datos y categoriza automáticamente — sin importar si son 50 o 50,000 ítems.</div>
+            <span class="ps-badge">Cualquier Excel o formato</span>
+          </div>
+        </div>
+        <div class="proceso-step">
+          <div class="ps-num">02</div>
+          <div>
+            <div class="ps-title">Análisis Pareto y VNR</div>
+            <div class="ps-desc">La plataforma identifica qué activos concentran el 80% del valor. Consulta nuestra base de datos propia de valores de mercado para calcular el Valor Neto de Reposición de cada categoría.</div>
+            <span class="ps-badge">Base de datos exclusiva</span>
+          </div>
+        </div>
+        <div class="proceso-step">
+          <div class="ps-num">03</div>
+          <div>
+            <div class="ps-title">Inspección en campo</div>
+            <div class="ps-desc">Nuestros valuadores certificados inspeccionan la muestra estadísticamente representativa usando nuestra app propia. FC y FO calculados con guía de IA en cada ítem.</div>
+            <span class="ps-badge">Red nacional certificada</span>
+          </div>
+        </div>
+        <div class="proceso-step">
+          <div class="ps-num">04</div>
+          <div>
+            <div class="ps-title">Dictamen y entrega</div>
+            <div class="ps-desc">Generamos el dictamen completo con metodología documentada, respaldado por valuadores certificados en cada categoría. Entrega formal con toda la trazabilidad del proceso.</div>
+            <span class="ps-badge">Validez legal · NMX-Z-013</span>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-visual">
+        <div class="pv-header">
+          <div class="pv-dots"><div class="pv-dot r"></div><div class="pv-dot y"></div><div class="pv-dot g"></div></div>
+          <div class="pv-title">avalluo — Panel de Proyecto</div>
+        </div>
+        <div class="pv-body">
+          <div class="pv-project">
+            <div class="pv-project-name">Maquiladora Frontera Norte <span class="pv-badge-green">En proceso</span></div>
+            <div class="pv-project-meta">Concurso Mercantil · Monterrey, NL · 1,951 ítems</div>
+          </div>
+          <div class="pv-kpis">
+            <div class="pv-kpi"><div class="pv-kpi-val">$13.6M</div><div class="pv-kpi-lbl">VNR Total USD</div></div>
+            <div class="pv-kpi"><div class="pv-kpi-val">523</div><div class="pv-kpi-lbl">A campo</div></div>
+            <div class="pv-kpi"><div class="pv-kpi-val">20</div><div class="pv-kpi-lbl">Categorías</div></div>
+          </div>
+          <div class="pv-track-title">Avance del proyecto</div>
+          <div class="pv-track-row"><span class="pv-track-label">Ingesta</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:100%"></div></div><span class="pv-track-pct">100%</span></div>
+          <div class="pv-track-row"><span class="pv-track-label">Análisis VNR</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:100%"></div></div><span class="pv-track-pct">100%</span></div>
+          <div class="pv-track-row"><span class="pv-track-label">Campo</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:64%"></div></div><span class="pv-track-pct">64%</span></div>
+          <div class="pv-track-row"><span class="pv-track-label">Dictamen</span><div class="pv-track-bar-bg"><div class="pv-track-bar" style="width:0%"></div></div><span class="pv-track-pct">–</span></div>
+          <div class="pv-status">Valuador J. Ramírez · 178 de 523 ítems inspeccionados hoy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECNOLOGÍA DETALLE -->
+<section class="section-off" id="tecnologia">
+  <div class="container">
+    <div class="eyebrow">Tecnología avalluo</div>
+    <h2 class="section-h2">La plataforma detrás<br>de <span class="grad-text">cada dictamen.</span></h2>
+    <p class="section-sub">No usamos hojas de cálculo ni PDFs genéricos. Cada paso del avalúo vive en nuestro sistema, diseñado para escalar sin perder precisión.</p>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-num">Motor 01</div>
+        <div class="tech-title">Ingesta y categorización inteligente</div>
+        <div class="tech-desc">Cualquier Excel, sin importar la estructura. La IA detecta columnas, limpia datos y categoriza cada ítem en segundos — hasta 90,000 activos por proyecto. Más de 20 categorías industriales con subcategorías específicas.</div>
+        <div class="tech-pills"><span class="tech-pill">IA propia</span><span class="tech-pill">&lt;30 seg / 1,000 ítems</span><span class="tech-pill">Cualquier formato</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">Motor 02</div>
+        <div class="tech-title">Análisis Pareto y base de datos VNR</div>
+        <div class="tech-desc">Identificamos automáticamente qué categorías representan el 80% del valor. Consultamos nuestra base de datos propia de precios de mercado secundario para calcular el VNR de cada categoría con datos reales del mercado mexicano e internacional.</div>
+        <div class="tech-pills"><span class="tech-pill">Base de datos exclusiva</span><span class="tech-pill">Pareto automático</span><span class="tech-pill">IronPlanet · Ritchie Bros</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">Motor 03</div>
+        <div class="tech-title">App de campo con IA visual</div>
+        <div class="tech-desc">Nuestros valuadores usan una app propia que los guía ítem por ítem. La IA visual sugiere el Factor de Condición Física basándose en fotos del activo. Funciona sin señal y sincroniza al regresar. Inspección 5x más rápida que el método tradicional.</div>
+        <div class="tech-pills"><span class="tech-pill">Offline-first</span><span class="tech-pill">IA visual</span><span class="tech-pill">45 seg / ítem</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">Motor 04</div>
+        <div class="tech-title">Motor FC/FO paramétrico y generación del dictamen</div>
+        <div class="tech-desc">Para ítems de bajo valor individual: fecha de compra, vida útil SAT, condición ambiental e intensidad de uso → FC calculado automáticamente. El dictamen final se genera con toda la metodología documentada y es verificable ítem a ítem.</div>
+        <div class="tech-pills"><span class="tech-pill">NMX-Z-013</span><span class="tech-pill">Trazabilidad total</span><span class="tech-pill">FC/FO auditables</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOOKS -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Lo que dicen nuestros clientes</div>
+    <h2 class="section-h2">Certeza que <span class="grad-text">transforma decisiones.</span></h2>
+    <div class="hooks-grid">
+      <div class="hook-card">
+        <div class="hook-quote">Nunca pensé que un inventario de 2,000 activos se pudiera valuar con ese nivel de detalle y en ese tiempo. El dictamen fue aceptado sin objeciones por el juez.</div>
+        <div class="hook-author">
+          <div class="hook-avatar">R</div>
+          <div>
+            <div class="hook-name">Ricardo Morales</div>
+            <div class="hook-role">Síndico · Concurso mercantil · Monterrey</div>
+          </div>
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-quote">La trazabilidad de la plataforma nos dio la tranquilidad que necesitábamos. Podíamos ver el avance en tiempo real y el dictamen final tenía todo el respaldo metodológico.</div>
+        <div class="hook-author">
+          <div class="hook-avatar">A</div>
+          <div>
+            <div class="hook-name">Alejandra Vega</div>
+            <div class="hook-role">Directora Financiera · Maquiladora · Juárez</div>
+          </div>
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-quote">Buscábamos un avalúo de nuestra flota pesquera con datos reales de mercado, no valores de catálogo. avalluo fue el único que pudo entregarlo con esa profundidad.</div>
+        <div class="hook-author">
+          <div class="hook-avatar">C</div>
+          <div>
+            <div class="hook-name">Carlos Espinoza</div>
+            <div class="hook-role">Director · Grupo pesquero · Ensenada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUADORES -->
+<section class="valuadores-section" id="valuadores">
+  <div class="valuadores-bg"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="val-grid">
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,0.5)">Red profesional</div>
+        <h2 class="section-h2" style="color:var(--white)">¿Eres valuador certificado? <span class="grad-text">Trabaja con nosotros.</span></h2>
+        <p class="section-sub" style="color:rgba(255,255,255,0.45)">Buscamos profesionales certificados en toda la república para formar parte de la red de valuadores más avanzada tecnológicamente de México.</p>
+        <div class="val-benefits">
+          <div class="val-benefit">
+            <div class="val-benefit-icon"><i data-lucide="wrench"></i></div>
+            <div>
+              <div class="val-benefit-title">Tecnología de vanguardia en tu bolsillo</div>
+              <div class="val-benefit-desc">App propia que te guía ítem a ítem. IA visual que sugiere el FC basada en fotos. Ruta optimizada en planta. Sincronización automática.</div>
+            </div>
+          </div>
+          <div class="val-benefit">
+            <div class="val-benefit-icon"><i data-lucide="bar-chart-2"></i></div>
+            <div>
+              <div class="val-benefit-title">Acceso a nuestra base de datos exclusiva</div>
+              <div class="val-benefit-desc">Trabaja con precios reales de mercado que ningún valuador independiente tiene. Dictámenes más sólidos, menos tiempo de investigación.</div>
+            </div>
+          </div>
+          <div class="val-benefit">
+            <div class="val-benefit-icon"><i data-lucide="globe"></i></div>
+            <div>
+              <div class="val-benefit-title">Proyectos en todo México</div>
+              <div class="val-benefit-desc">Asignamos proyectos por tu ubicación y especialidad. Sin prospección. Tú llegas a inspeccionar y nosotros cerramos el proceso.</div>
+            </div>
+          </div>
+          <div class="val-benefit">
+            <div class="val-benefit-icon"><i data-lucide="briefcase"></i></div>
+            <div>
+              <div class="val-benefit-title">Respaldo metodológico total</div>
+              <div class="val-benefit-desc">Nuestra metodología documentada respalda cada dictamen. Menos exposición legal, más confianza en cada entrega.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="val-form">
+        <div class="val-form-title">Únete a la red avalluo</div>
+        <div class="val-form-sub">Cuéntanos de tu perfil y te contactamos en 48 horas para una entrevista.</div>
+        <input class="val-input" type="text" placeholder="Nombre completo">
+        <input class="val-input" type="email" placeholder="Correo electrónico">
+        <input class="val-input" type="tel" placeholder="WhatsApp (con lada)">
+        <select class="val-input val-select" style="color:rgba(255,255,255,0.6)">
+          <option value="" style="background:#1a1a2e">Especialidad principal</option>
+          <option style="background:#1a1a2e">Maquinaria industrial</option>
+          <option style="background:#1a1a2e">Embarcaciones</option>
+          <option style="background:#1a1a2e">Aeronaves</option>
+          <option style="background:#1a1a2e">Equipo de cómputo</option>
+          <option style="background:#1a1a2e">Inmuebles</option>
+          <option style="background:#1a1a2e">General</option>
+        </select>
+        <input class="val-input" type="text" placeholder="Estado donde operas">
+        <button class="btn-grad-full" onclick="window.location.href='mailto:atencion@avalluo.com'">Enviar solicitud</button>
+        <div class="val-note">También puedes escribirnos directamente a atencion@avalluo.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="eyebrow" style="color:rgba(255,255,255,0.4);justify-content:center">El siguiente paso es tuyo</div>
+    <h2 class="cta-h2">¿Tienes activos que<br>necesitas <span class="grad-text">valuar?</span></h2>
+    <p class="cta-sub">
+      Cuéntanos qué tienes — maquinaria, embarcaciones, aeronaves, inventarios completos —<br>y en menos de 24 horas te decimos exactamente cómo podemos ayudarte.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:atencion@avalluo.com" class="btn-grad" style="font-size:16px;padding:18px 36px">
+        Contactar a avalluo
+        <i data-lucide="arrow-right" width="16" height="16"></i>
+      </a>
+      <a href="https://wa.me/12605298161" class="btn-ghost" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15);background:transparent">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="cta-contact">
+      <div class="cta-contact-item">
+        <i data-lucide="mail" width="14" height="14"></i>
+        <a href="mailto:atencion@avalluo.com">atencion@avalluo.com</a>
+      </div>
+      <div class="cta-contact-dot"></div>
+      <div class="cta-contact-item">Respuesta en menos de 24 horas</div>
+      <div class="cta-contact-dot"></div>
+      <div class="cta-contact-item">Cobertura nacional</div>
+    </div>
+  </div>
+</section>
+
+<!-- WIDGET FLOTANTE -->
+<div class="float-widget" id="floatWidget">
+  <div class="fw-buttons hidden" id="fwButtons">
+    <a href="https://wa.me/12605298161?text=Hola%2C%20me%20interesa%20un%20avalúo" target="_blank" class="fw-btn wa">
+      <span class="fw-btn-icon">
+        <svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="white" d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.524 5.845L0 24l6.336-1.494A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.5-5.207-1.378l-.373-.22-3.762.887.936-3.645-.244-.384A9.943 9.943 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      </span>
+      <div><span class="fw-text">WhatsApp</span><div class="fw-label">Respuesta inmediata</div></div>
+    </a>
+    <a href="tel:+5218180000000" class="fw-btn call">
+      <span class="fw-btn-icon">
+        <i data-lucide="phone"></i>
+      </span>
+      <div><span class="fw-text">Llamar ahora</span><div class="fw-label">Lunes–Viernes 9–18h</div></div>
+    </a>
+    <button class="fw-btn meet" id="openChat">
+      <span class="fw-btn-icon">
+        <i data-lucide="message-circle"></i>
+      </span>
+      <div><span class="fw-text">Chat con IA</span><div class="fw-label">Capi te responde ya</div></div>
+    </button>
+  </div>
+  <button class="fw-toggle" id="fwToggle" aria-label="Contacto">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" id="fwIcon">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+  </button>
+</div>
+
+<!-- CHAT WINDOW -->
+<div class="chat-overlay" id="chatOverlay"></div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">🦫</div>
+    <div>
+      <div class="chat-agent-name">Capi — Asistente avalluo</div>
+      <div class="chat-agent-status">● En línea · responde en segundos</div>
+    </div>
+    <button class="chat-close" id="chatClose">
+      <i data-lucide="x" width="18" height="18"></i>
+    </button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input-area">
+    <textarea class="chat-input" id="chatInput" rows="1" placeholder="Escribe tu pregunta…"></textarea>
+    <button class="chat-send" id="chatSendBtn">
+      <i data-lucide="send"></i>
+    </button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <img src="Avalluo Logo (2).png" alt="avalluo" style="height:28px;display:block">
+    <ul class="footer-links">
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Términos</a></li>
+      <li><a href="mailto:atencion@avalluo.com">Contacto</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 avalluo. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+// ── 1. REVEAL CARDS ──
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.diff-card,.client-card,.tech-card,.hook-card,.val-benefit').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .6s ease, transform .6s ease';
+  revealObserver.observe(el);
+});
+
+// ── 2. NAV SCROLL ──
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  nav.style.boxShadow=window.scrollY>20?'0 2px 20px rgba(0,0,0,0.08)':'none';
+});
+
+// ── 3. CLIENT CARDS ──
+document.querySelectorAll('.client-card').forEach(card=>{
+  card.addEventListener('click',()=>{window.location.href='mailto:atencion@avalluo.com';});
+});
+
+// ── 4. CONTADORES ANIMADOS ──
+function animateCounter(el){
+  const target=parseInt(el.dataset.count);
+  const prefix=el.dataset.prefix||'';
+  const suffix=el.dataset.suffix||'';
+  const isK=el.dataset.format==='k';
+  const duration=1800;
+  const start=performance.now();
+  function step(now){
+    const progress=Math.min((now-start)/duration,1);
+    const ease=1-Math.pow(1-progress,3);
+    const val=Math.round(target*ease);
+    if(isK){el.textContent=prefix+(val>=1000?(val/1000).toFixed(0)+'K':val)+suffix;}
+    else{el.textContent=prefix+val+suffix;}
+    if(progress<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const counterObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.target.dataset.count){
+      animateCounter(e.target);
+      counterObserver.unobserve(e.target);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.strip-num[data-count]').forEach(el=>counterObserver.observe(el));
+
+// ── 5. MAPA D3 ──
+(function(){
+  const GEO='https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json';
+  const tooltip=document.getElementById('mapa-tooltip');
+  const mapWrap=document.querySelector('.mapa-svg-wrap');
+  if(!mapWrap||typeof d3==='undefined')return;
+  const W=960,H=600;
+  const svgEl=document.getElementById('mexico-map');
+  svgEl.setAttribute('viewBox','0 0 '+W+' '+H);
+  fetch(GEO)
+    .then(r=>r.json())
+    .then(data=>{
+      const proj=d3.geoMercator().fitSize([W,H],data);
+      const pathGen=d3.geoPath().projection(proj);
+      d3.select('#mexico-map')
+        .selectAll('path')
+        .data(data.features)
+        .join('path')
+        .attr('d',pathGen)
+        .attr('class','covered')
+        .attr('data-name',d=>d.properties.name)
+        .on('mousemove',function(event,d){
+          const rect=mapWrap.getBoundingClientRect();
+          tooltip.textContent=d.properties.name;
+          tooltip.style.left=(event.clientX-rect.left)+'px';
+          tooltip.style.top=(event.clientY-rect.top)+'px';
+          tooltip.style.opacity='1';
+        })
+        .on('mouseleave',()=>tooltip.style.opacity='0');
+    })
+    .catch(()=>{
+      const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
+      txt.setAttribute('x',W/2);txt.setAttribute('y',H/2);
+      txt.setAttribute('text-anchor','middle');
+      txt.setAttribute('fill','rgba(255,255,255,0.3)');
+      txt.setAttribute('font-size','18');
+      txt.textContent='Mapa no disponible';
+      svgEl.appendChild(txt);
+    });
+})();
+
+// ── 6. WIDGET FLOTANTE ──
+const fwToggle=document.getElementById('fwToggle');
+const fwButtons=document.getElementById('fwButtons');
+const fwIcon=document.getElementById('fwIcon');
+let fwOpen=false;
+fwToggle.addEventListener('click',()=>{
+  fwOpen=!fwOpen;
+  fwButtons.classList.toggle('hidden',!fwOpen);
+  fwIcon.innerHTML=fwOpen
+    ?'<path d="M18 6L6 18M6 6l12 12"/>'
+    :'<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>';
+});
+
+// ── 7. CHAT IA ──
+const chatWindow=document.getElementById('chatWindow');
+const chatOverlay=document.getElementById('chatOverlay');
+const chatMessages=document.getElementById('chatMessages');
+const chatInput=document.getElementById('chatInput');
+const chatSendBtn=document.getElementById('chatSendBtn');
+const openChatBtn=document.getElementById('openChat');
+const chatCloseBtn=document.getElementById('chatClose');
+
+// CONFIGURA TU API KEY AQUÍ
+const CLAUDE_API_KEY='REEMPLAZAR_CON_API_KEY';
+const SYSTEM_PROMPT=`Eres Capi, el asistente virtual de avalluo — la plataforma líder de avalúos de activos en México. Tu tono es profesional pero cercano, claro y confiable. Hablas en español mexicano.
+
+Tu objetivo es:
+1. Resolver dudas sobre avalúos (maquinaria, embarcaciones, aeronaves, activos industriales).
+2. Explicar cómo funciona avalluo: plataforma propia, valuadores certificados, metodología NMX-Z-013.
+3. Calificar al lead: pregunta qué tipo de activo quiere valuar, para qué fin (crédito, venta, concurso mercantil, revaluación) y en qué estado de la República.
+4. Al final de la conversación (cuando el lead está interesado), pide su nombre, empresa y teléfono para que un especialista lo contacte.
+
+Sé conciso. Respuestas cortas (máx 3 oraciones). Si no sabes algo específico, ofrece que un especialista lo contacte.`;
+
+let chatHistory=[];
+let chatStarted=false;
+
+function openChat(){
+  chatWindow.classList.add('open');
+  chatOverlay.classList.add('open');
+  fwButtons.classList.add('hidden');
+  fwOpen=false;
+  fwIcon.innerHTML='<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>';
+  if(!chatStarted){
+    chatStarted=true;
+    setTimeout(()=>addBotMessage('¡Hola! Soy Capi 👋 El asistente de avalluo. ¿En qué te puedo ayudar hoy? Puedo orientarte sobre avalúos de maquinaria, embarcaciones, aeronaves y más.'),400);
+  }
+}
+function closeChat(){
+  chatWindow.classList.remove('open');
+  chatOverlay.classList.remove('open');
+}
+
+openChatBtn.addEventListener('click',openChat);
+chatCloseBtn.addEventListener('click',closeChat);
+chatOverlay.addEventListener('click',closeChat);
+
+function addBotMessage(text){
+  const msg=document.createElement('div');
+  msg.className='chat-msg bot';
+  msg.textContent=text;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+function addUserMessage(text){
+  const msg=document.createElement('div');
+  msg.className='chat-msg user';
+  msg.textContent=text;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+function showTyping(){
+  const t=document.createElement('div');
+  t.className='chat-msg typing';
+  t.id='typing-indicator';
+  t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  chatMessages.appendChild(t);
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+function removeTyping(){const t=document.getElementById('typing-indicator');if(t)t.remove();}
+
+async function sendMessage(){
+  const text=chatInput.value.trim();
+  if(!text)return;
+  chatInput.value='';
+  chatInput.style.height='auto';
+  addUserMessage(text);
+  chatHistory.push({role:'user',content:text});
+  showTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'x-api-key':CLAUDE_API_KEY,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-3-5-haiku-20241022',max_tokens:300,system:SYSTEM_PROMPT,messages:chatHistory})
+    });
+    const data=await res.json();
+    removeTyping();
+    const reply=data.content&&data.content[0]?data.content[0].text:'Lo siento, hubo un error. Por favor escríbenos a atencion@avalluo.com';
+    chatHistory.push({role:'assistant',content:reply});
+    addBotMessage(reply);
+  }catch(err){
+    removeTyping();
+    addBotMessage('Parece que hay un problema de conexión. Puedes escribirnos directamente a atencion@avalluo.com 📧');
+  }
+}
+
+chatSendBtn.addEventListener('click',sendMessage);
+chatInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}
+});
+chatInput.addEventListener('input',function(){
+  this.style.height='auto';
+  this.style.height=Math.min(this.scrollHeight,100)+'px';
+});
+
+lucide.createIcons();
+</script>
+</body>
+</html>
