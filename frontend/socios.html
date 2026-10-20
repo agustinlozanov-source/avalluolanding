@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Acuerdos de Socios — avalluo</title>
+<link rel="icon" type="image/png" href="assets/Avalluo Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#1f9095; --blue:#2d43b3; --grad:linear-gradient(135deg,#1f9095,#2d43b3);
+    --ink:#0D0D14; --ink2:#1a1a2e; --muted:#5a6070; --soft:#9099aa;
+    --page:#f7f8fc; --surface:#ffffff; --soft-bg:#f0f1f7;
+    --line:rgba(0,0,0,0.08); --line2:rgba(0,0,0,0.05);
+    --ok:#1a9640; --ok-bg:rgba(26,150,64,.10);
+    --no:#d63b30; --no-bg:rgba(214,59,48,.10);
+    --pend:#c47a00; --pend-bg:rgba(196,122,0,.10);
+    --r:14px; --shadow:0 4px 16px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--page);color:var(--ink);font-family:'Ubuntu',system-ui,-apple-system,sans-serif;line-height:1.5;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
+
+  .top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+  .top-in{max-width:960px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:14px;min-width:0}
+  .brand img{height:30px;width:auto;display:block}
+  .brand-txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-size:18px;font-weight:700;letter-spacing:-.02em}
+  .title-input{font:inherit;font-size:18px;font-weight:700;border:1px dashed var(--teal);border-radius:8px;padding:2px 8px;background:var(--surface);color:var(--ink)}
+  .top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .date{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+  .date input{font:inherit;font-size:13px;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:6px 9px}
+
+  .btn{font:inherit;font-weight:500;font-size:13px;cursor:pointer;border-radius:10px;padding:8px 15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:inline-flex;align-items:center;gap:7px;transition:all .14s;white-space:nowrap;text-decoration:none}
+  .btn:hover{border-color:var(--teal);color:var(--teal)}
+  .btn:disabled{opacity:.5;cursor:default}
+  .btn.primary{background:var(--grad);border:none;color:#fff}
+  .btn.primary:hover{filter:brightness(1.07);color:#fff}
+  .btn.danger{color:var(--no);border-color:var(--no-bg)}
+  .btn.danger:hover{background:var(--no-bg);border-color:var(--no);color:var(--no)}
+  .btn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+  .btn.active:hover{color:#fff}
+  .btn.sm{padding:5px 10px;font-size:12px;border-radius:8px}
+
+  .wrap{max-width:960px;margin:0 auto;padding:20px 20px 72px}
+  .sync{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--soft);margin:4px 2px 16px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--soft);flex:none}
+  .sync.live .dot{background:var(--ok);animation:pulse 2s infinite}
+  .sync.err .dot{background:var(--no)}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(26,150,64,.45)}70%{box-shadow:0 0 0 6px rgba(26,150,64,0)}100%{box-shadow:0 0 0 0 rgba(26,150,64,0)}}
+
+  .board{display:flex;gap:12px;margin:8px 0 14px;flex-wrap:wrap}
+  .tile{flex:1 1 160px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .tile.ok::before{background:var(--ok)} .tile.no::before{background:var(--no)} .tile.pend::before{background:var(--pend)}
+  .tile .n{font-size:30px;font-weight:700;line-height:1}
+  .tile.ok .n{color:var(--ok)} .tile.no .n{color:var(--no)} .tile.pend .n{color:var(--pend)}
+  .tile .l{font-size:12px;color:var(--muted);margin-top:4px}
+
+  .hint{font-size:12.5px;color:var(--muted);margin:6px 2px 18px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .key{display:inline-flex;align-items:center;gap:6px}
+  .kd{width:17px;height:17px;border-radius:5px;display:inline-grid;place-items:center;font-size:11px;font-weight:700}
+  .kd.ok{background:var(--ok-bg);color:var(--ok)} .kd.no{background:var(--no-bg);color:var(--no)} .kd.pend{background:var(--soft-bg);color:var(--soft)}
+
+  .sec{margin-bottom:26px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;margin:0 2px 11px;flex-wrap:wrap}
+  .sec-n{font-weight:700;color:var(--teal);font-size:15px}
+  .sec-t{font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .sec-note{font-size:12.5px;color:var(--soft)}
+  .sec-h input{font:inherit;border:1px dashed var(--line);border-radius:7px;padding:3px 7px;background:var(--surface);color:inherit}
+
+  .items{display:flex;flex-direction:column;gap:10px}
+  .item{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;transition:border-color .15s}
+  .item[data-st="ok"]{border-left-color:var(--ok)} .item[data-st="no"]{border-left-color:var(--no)} .item[data-st="pend"]{border-left-color:var(--line)}
+  .item-main{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;padding:14px 16px}
+  .item-txt{flex:1 1 280px;min-width:0}
+  .item-t{font-size:14.5px;font-weight:500;line-height:1.45}
+  .item-s{font-size:12.5px;color:var(--muted);margin-top:5px}
+  .edit-in{width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:var(--soft-bg);color:inherit;resize:vertical}
+  .edit-in.t{font-size:14.5px;font-weight:500;margin-bottom:6px}
+  .edit-in.s{font-size:12.5px}
+  .chip{display:inline-block;margin-top:9px;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+  .chip.ok{background:var(--ok-bg);color:var(--ok)} .chip.no{background:var(--no-bg);color:var(--no)} .chip.pend{background:var(--soft-bg);color:var(--soft)}
+
+  .votes{display:flex;gap:9px;flex-shrink:0}
+  .vote{display:flex;flex-direction:column;align-items:center;gap:5px}
+  .vote .who{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--soft)}
+  .vote button{width:50px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--soft-bg);color:var(--soft);font-size:20px;font-weight:700;cursor:pointer;display:grid;place-items:center;transition:all .12s;line-height:1;font-family:inherit}
+  .vote button:hover{border-color:var(--teal)}
+  .vote button[data-v="ok"]{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
+  .vote button[data-v="no"]{background:var(--no-bg);color:var(--no);border-color:var(--no)}
+
+  .item-foot{border-top:1px solid var(--line2);padding:0 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .note-toggle{background:none;border:none;color:var(--teal);font:inherit;font-size:12.5px;font-weight:500;cursor:pointer;padding:10px 0;display:inline-flex;align-items:center;gap:6px}
+  .note-toggle:hover{text-decoration:underline}
+  .note-wrap{padding:0 16px 13px}
+  .note-wrap textarea{width:100%;font:inherit;font-size:13px;color:inherit;background:var(--soft-bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px;resize:vertical;min-height:56px}
+  .del-ac{margin-left:auto}
+  .add-row{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+
+  .firmas{margin-top:30px;border-top:1px solid var(--line);padding-top:22px}
+  .firmas h2{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+  .firmas .sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .firmas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .fcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:10px}
+  .fcard.signed{border-color:var(--ok)}
+  .fcard-who{font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .fbadge{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:999px}
+  .fbadge.ok{background:var(--ok-bg);color:var(--ok)} .fbadge.pend{background:var(--pend-bg);color:var(--pend)}
+  .fbox{height:96px;border:1px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--soft-bg);overflow:hidden}
+  .fbox img{max-height:90px;max-width:100%}
+  .fname{font-size:26px;font-weight:300;font-style:italic;color:var(--ink2)}
+  .fempty{font-size:13px;color:var(--soft)}
+  .fmeta{font-size:11px;color:var(--soft);line-height:1.5}
+  .fmeta b{color:var(--muted);font-weight:500}
+
+  .modal-bg{position:fixed;inset:0;background:rgba(13,13,20,.5);backdrop-filter:blur(3px);z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+  .modal{background:var(--surface);border-radius:18px;box-shadow:0 24px 80px rgba(0,0,0,.25);width:100%;max-width:460px;padding:22px;display:flex;flex-direction:column;gap:16px}
+  .modal h3{font-size:18px;font-weight:700}
+  .modal p{font-size:13px;color:var(--muted)}
+  .seg{display:flex;gap:6px;background:var(--soft-bg);padding:4px;border-radius:11px}
+  .seg button{flex:1;font:inherit;font-size:13px;font-weight:500;border:none;background:transparent;color:var(--muted);padding:8px;border-radius:8px;cursor:pointer}
+  .seg button.on{background:var(--surface);color:var(--teal);box-shadow:var(--shadow)}
+  .field label{font-size:12px;font-weight:500;color:var(--muted);display:block;margin-bottom:5px}
+  .field input{width:100%;font:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface);color:var(--ink)}
+  .canvas-wrap{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  .canvas-wrap canvas{display:block;width:100%;height:180px;touch-action:none;cursor:crosshair}
+  .canvas-hint{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;color:var(--soft);pointer-events:none}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+  .modal-actions .spacer{margin-right:auto}
+
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;padding:10px 18px;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,.25);z-index:60;opacity:0;transition:opacity .25s;pointer-events:none}
+  .toast.show{opacity:1}
+  .center{max-width:960px;margin:0 auto;padding:60px 20px;text-align:center;color:var(--muted)}
+  .foot{font-size:12px;color:var(--soft);margin-top:26px;line-height:1.7}
+
+  @media (max-width:560px){
+    .item-main{flex-direction:column;gap:14px}
+    .votes{width:100%;justify-content:space-between}
+    .vote{flex:1} .vote button{width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* ── Impresión / PDF ───────────────────────────────── */
+  @media print{
+    .top{position:static;background:none;border:none}
+    .top-actions,.hint,.sync,.note-toggle,.del-ac,.add-row,#addSeccion,.fcard .btn,.vote button{pointer-events:none}
+    .top-actions,.note-toggle,.del-ac,.add-row,#addSeccion,.fcard>.btn{display:none!important}
+    body{background:#fff}
+    .item,.tile,.fcard{box-shadow:none;break-inside:avoid}
+    .sec{break-inside:avoid}
+    .vote button{border:none;background:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-in">
+    <div class="brand">
+      <img src="assets/Avalluo Logo (1).png" alt="avalluo">
+      <div class="brand-txt">
+        <span class="eyebrow" id="eyebrow"></span>
+        <h1 id="title"></h1>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div class="date"><label for="fecha">Reunión:</label><input type="date" id="fecha"></div>
+      <button class="btn" id="editBtn">✎ Editar acuerdos</button>
+      <button class="btn primary" id="pdfBtn">↓ PDF</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="shell"><div class="center">Cargando minuta…</div></div>
+</div>
+
+<div id="modalRoot"></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+// ─── CONFIGURACIÓN ──────────────────────────────────────────────
+// Llave PÚBLICA (anon) de Supabase. Es segura para una página pública:
+// el acceso real lo controlan las políticas (RLS) de la base de datos.
+const SUPABASE_URL = "https://mlkyjoxsifaunjbpsifu.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sa3lqb3hzaWZhdW5qYnBzaWZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3ODQ2OTksImV4cCI6MjA5MDM2MDY5OX0.mJeGcYMcEMpZ1mqrITU8xxzalu0NCbbCIvzmPkMx9tE";
+const SLUG = "socios";
+// ────────────────────────────────────────────────────────────────
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const GLYPH = {ok:"✓", no:"✗", pend:"–"};
+const CHIP  = {ok:"Consenso", no:"En conflicto", pend:"Pendiente"};
+const CICLO = {pend:"ok", ok:"no", no:"pend"};
+
+let M = null;                 // minuta cargada
+let editMode = false;
+let openNotes = new Set();
+let busyEditing = false, pendingReload = false;
+let reloadTimer = null;
+
+const $ = s => document.querySelector(s);
+const el = (t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2000);}
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+// ── Carga ───────────────────────────────────────────────────────
+async function load(){
+  const {data,error} = await sb.from("minutas").select(`
+    id, slug, titulo, eyebrow, fecha_reunion, estado,
+    socios:minuta_socios(id,nombre,orden),
+    secciones:minuta_secciones(id,numero,titulo,nota,orden,
+      acuerdos:minuta_acuerdos(id,seccion_id,texto,subtexto,nota,orden)),
+    votos:minuta_votos(acuerdo_id,socio_id,valor),
+    firmas:minuta_firmas(socio_id,tipo,nombre,firma_imagen,sello,firmado_en)
+  `).eq("slug",SLUG).maybeSingle();
+
+  if(error || !data){
+    $("#shell").innerHTML = `<div class="center">No se pudo cargar la minuta.<br><small>${esc(error?.message||"Revisa la configuración de Supabase.")}</small></div>`;
+    return;
+  }
+  data.socios.sort((a,b)=>a.orden-b.orden);
+  data.secciones.sort((a,b)=>a.orden-b.orden);
+  data.secciones.forEach(s=>s.acuerdos.sort((a,b)=>a.orden-b.orden));
+  M = data;
+  $("#eyebrow").textContent = M.eyebrow||"";
+  $("#title").textContent = M.titulo||"";
+  if(document.activeElement !== $("#fecha")) $("#fecha").value = M.fecha_reunion||"";
+  render();
+}
+function reloadSafe(){
+  if(busyEditing){pendingReload=true;return;}
+  clearTimeout(reloadTimer); reloadTimer=setTimeout(load,150);
+}
+
+// ── Helpers de estado ───────────────────────────────────────────
+function votoDe(aid,sid){const v=M.votos.find(x=>x.acuerdo_id===aid&&x.socio_id===sid);return v?v.valor:"pend";}
+function estadoAcuerdo(aid){
+  const vals=M.socios.map(s=>votoDe(aid,s.id));
+  if(vals.includes("no"))return "no";
+  if(vals.length&&vals.every(x=>x==="ok"))return "ok";
+  return "pend";
+}
+
+// ── Render ──────────────────────────────────────────────────────
+function render(){
+  const shell=$("#shell"); shell.innerHTML="";
+  let nOk=0,nNo=0,nPend=0;
+  M.secciones.forEach(s=>s.acuerdos.forEach(a=>{const st=estadoAcuerdo(a.id);st==="ok"?nOk++:st==="no"?nNo++:nPend++;}));
+
+  // tablero
+  const board=el("div","board");
+  board.innerHTML=`
+    <div class="tile ok"><div class="n">${nOk}</div><div class="l">Consenso total (los tres de acuerdo)</div></div>
+    <div class="tile no"><div class="n">${nNo}</div><div class="l">En conflicto (hay desacuerdo)</div></div>
+    <div class="tile pend"><div class="n">${nPend}</div><div class="l">Pendientes de definir</div></div>`;
+  shell.appendChild(board);
+
+  const sync=el("div","sync live");
+  sync.id="sync";
+  sync.innerHTML=`<span class="dot"></span><span>En vivo · los cambios se sincronizan entre los tres en tiempo real</span>`;
+  shell.appendChild(sync);
+
+  const hint=el("div","hint");
+  hint.innerHTML=`<span>Cada socio marca su casilla (toca para cambiar):</span>
+    <span class="key"><span class="kd ok">✓</span> De acuerdo</span>
+    <span class="key"><span class="kd no">✗</span> En desacuerdo</span>
+    <span class="key"><span class="kd pend">–</span> Pendiente</span>`;
+  shell.appendChild(hint);
+
+  M.secciones.forEach(sec=>shell.appendChild(renderSec(sec)));
+
+  if(editMode){
+    const ar=el("div","add-row");
+    const b=el("button","btn"); b.textContent="+ Agregar sección"; b.onclick=addSeccion;
+    ar.appendChild(b); ar.id="addSeccion"; shell.appendChild(ar);
+  }
+
+  shell.appendChild(renderFirmas());
+}
+
+function renderSec(sec){
+  const s=el("section","sec");
+  const h=el("div","sec-h");
+  if(editMode){
+    h.innerHTML=`<input style="width:44px" value="${esc(sec.numero||"")}" data-sn="${sec.id}" aria-label="Número">
+      <input style="flex:1 1 220px;font-weight:700" value="${esc(sec.titulo)}" data-st="${sec.id}" aria-label="Título">
+      <input style="flex:1 1 180px" value="${esc(sec.nota||"")}" data-snote="${sec.id}" placeholder="Nota de sección">
+      <button class="btn sm danger" data-delsec="${sec.id}">Eliminar sección</button>`;
+  }else{
+    h.innerHTML=`${sec.numero?`<span class="sec-n">${esc(sec.numero)}</span>`:""}<h2 class="sec-t">${esc(sec.titulo)}</h2>${sec.nota?`<span class="sec-note">${esc(sec.nota)}</span>`:""}`;
+  }
+  s.appendChild(h);
+
+  const items=el("div","items");
+  sec.acuerdos.forEach(a=>items.appendChild(renderItem(sec,a)));
+  s.appendChild(items);
+
+  if(editMode){
+    const ar=el("div","add-row");
+    const b=el("button","btn sm"); b.textContent="+ Agregar acuerdo a esta sección"; b.onclick=()=>addAcuerdo(sec.id);
+    ar.appendChild(b); s.appendChild(ar);
+  }
+  return s;
+}
+
+function renderItem(sec,a){
+  const st=estadoAcuerdo(a.id);
+  const item=el("div","item"); item.dataset.st=st;
+  const main=el("div","item-main");
+  const txt=el("div","item-txt");
+  if(editMode){
+    txt.innerHTML=`<textarea class="edit-in t" rows="2" data-txt="${a.id}">${esc(a.texto)}</textarea>
+      <textarea class="edit-in s" rows="2" data-sub="${a.id}" placeholder="Subtexto / aclaración (opcional)">${esc(a.subtexto||"")}</textarea>`;
+  }else{
+    txt.innerHTML=`<p class="item-t">${esc(a.texto)}</p>${a.subtexto?`<p class="item-s">${esc(a.subtexto)}</p>`:""}<span class="chip ${st}">${CHIP[st]}</span>`;
+  }
+  main.appendChild(txt);
+
+  const votes=el("div","votes");
+  M.socios.forEach(s=>{
+    const v=votoDe(a.id,s.id);
+    const w=el("div","vote");
+    w.innerHTML=`<span class="who">${esc(s.nombre)}</span><button data-vote="${a.id}" data-socio="${s.id}" ${v!=="pend"?`data-v="${v}"`:""} aria-label="${esc(s.nombre)}: ${v}">${GLYPH[v]}</button>`;
+    votes.appendChild(w);
+  });
+  main.appendChild(votes);
+  item.appendChild(main);
+
+  const foot=el("div","item-foot");
+  const hasNote=(a.nota||"").trim().length>0;
+  foot.innerHTML=`<button class="note-toggle" data-note="${a.id}">✎ ${hasNote?"Ver / editar nota":"Agregar nota"}</button>${editMode?`<button class="btn sm danger del-ac" data-delac="${a.id}">Eliminar</button>`:""}`;
+  item.appendChild(foot);
+
+  if(openNotes.has(a.id)){
+    const nw=el("div","note-wrap");
+    nw.innerHTML=`<textarea data-notetext="${a.id}" placeholder="Observaciones, condiciones o el acuerdo final de este punto…">${esc(a.nota||"")}</textarea>`;
+    item.appendChild(nw);
+  }
+  return item;
+}
+
+function renderFirmas(){
+  const wrap=el("div","firmas");
+  const completas=M.firmas.length>=M.socios.length && M.socios.length>0;
+  let grid=`<div class="firmas-grid">`;
+  M.socios.forEach(s=>{
+    const f=M.firmas.find(x=>x.socio_id===s.id);
+    const inner=!f?`<span class="fempty">Sin firmar</span>`
+      :(f.tipo==="dibujo"&&f.firma_imagen)?`<img src="${f.firma_imagen}" alt="Firma de ${esc(f.nombre)}">`:`<span class="fname">${esc(f.nombre)}</span>`;
+    let actions="";
+    if(f){
+      const fecha=new Date(f.firmado_en).toLocaleString("es-MX",{dateStyle:"medium",timeStyle:"short"});
+      actions=`<div class="fmeta"><b>${esc(f.nombre)}</b><br>${fecha}${f.sello?`<br>Sello: <b>${esc(f.sello)}</b>`:""}</div>
+        <button class="btn sm danger" data-unsign="${s.id}">Quitar firma</button>`;
+    }else{
+      actions=`<button class="btn primary" data-sign="${s.id}">Firmar</button>`;
+    }
+    grid+=`<div class="fcard ${f?"signed":""}"><div class="fcard-who">${esc(s.nombre)}<span class="fbadge ${f?"ok":"pend"}">${f?"Firmado":"Pendiente"}</span></div><div class="fbox">${inner}</div>${actions}</div>`;
+  });
+  grid+=`</div>`;
+  wrap.innerHTML=`<h2>Firmas de conformidad</h2>
+    <p class="sub">Al firmar, cada socio deja constancia de su conformidad con los acuerdos de arriba. Puedes firmar escribiendo tu nombre o con una firma a mano alzada. Se registra la fecha y un sello de integridad.</p>
+    ${grid}
+    ${completas?`<p class="foot" style="color:var(--ok);font-weight:500">✓ Minuta firmada por los ${M.socios.length} socios. Usa el botón PDF para guardar el documento definitivo.</p>`:""}
+    <p class="foot">Enlace privado: comparte esta dirección solo con los socios. Cualquiera con el enlace puede votar, editar y firmar.</p>`;
+  return wrap;
+}
+
+// ── Escritura a Supabase ────────────────────────────────────────
+async function toggleVoto(aid,sid){
+  const valor=CICLO[votoDe(aid,sid)];
+  const i=M.votos.findIndex(v=>v.acuerdo_id===aid&&v.socio_id===sid);
+  if(i>=0)M.votos[i].valor=valor; else M.votos.push({acuerdo_id:aid,socio_id:sid,valor});
+  render();
+  const {error}=await sb.from("minuta_votos").upsert({minuta_id:M.id,acuerdo_id:aid,socio_id:sid,valor,actualizado_en:new Date().toISOString()},{onConflict:"acuerdo_id,socio_id"});
+  if(error){toast("No se pudo guardar el voto");load();}
+}
+async function saveAcuerdo(aid,patch){const{error}=await sb.from("minuta_acuerdos").update(patch).eq("id",aid);if(error)toast("No se pudo guardar el cambio");}
+async function addAcuerdo(sid){
+  const sec=M.secciones.find(s=>s.id===sid); const orden=sec?sec.acuerdos.length:0;
+  const{error}=await sb.from("minuta_acuerdos").insert({minuta_id:M.id,seccion_id:sid,texto:"Nuevo acuerdo",orden});
+  if(error)toast("No se pudo agregar"); else load();
+}
+async function delAcuerdo(aid){if(!confirm("¿Eliminar este acuerdo? No se puede deshacer."))return;const{error}=await sb.from("minuta_acuerdos").delete().eq("id",aid);if(error)toast("No se pudo eliminar");else load();}
+async function addSeccion(){const orden=M.secciones.length;const{error}=await sb.from("minuta_secciones").insert({minuta_id:M.id,numero:String(orden+1),titulo:"Nueva sección",orden});if(error)toast("No se pudo agregar la sección");else load();}
+async function delSeccion(sid){if(!confirm("¿Eliminar la sección completa y sus acuerdos?"))return;const{error}=await sb.from("minuta_secciones").delete().eq("id",sid);if(error)toast("No se pudo eliminar");else load();}
+async function saveSeccion(sid,patch){const{error}=await sb.from("minuta_secciones").update(patch).eq("id",sid);if(error)toast("No se pudo guardar");}
+async function saveFecha(v){M.fecha_reunion=v||null;const{error}=await sb.from("minutas").update({fecha_reunion:v||null,actualizado_en:new Date().toISOString()}).eq("id",M.id);if(error)toast("No se pudo guardar la fecha");}
+async function saveTitulo(v){const{error}=await sb.from("minutas").update({titulo:v,actualizado_en:new Date().toISOString()}).eq("id",M.id);if(error)toast("No se pudo guardar el título");}
+
+async function sello(nombre, firmado_en){
+  const snap=M.secciones.flatMap(s=>s.acuerdos.map(a=>`${a.texto}|${(a.nota||"").trim()}`)).join("§");
+  const data=`${M.slug}::${nombre}::${snap}::${firmado_en}`;
+  try{
+    const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(data));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("").slice(0,16).toUpperCase();
+  }catch(e){return null;}
+}
+async function firmar(sid,tipo,nombre,imagen){
+  const firmado_en=new Date().toISOString();
+  const sl=await sello(nombre,firmado_en);
+  const{error}=await sb.from("minuta_firmas").upsert({minuta_id:M.id,socio_id:sid,tipo,nombre,firma_imagen:tipo==="dibujo"?imagen:null,sello:sl,firmado_en},{onConflict:"minuta_id,socio_id"});
+  if(error){toast("No se pudo firmar: "+error.message);return false;}
+  const{count}=await sb.from("minuta_firmas").select("*",{count:"exact",head:true}).eq("minuta_id",M.id);
+  await sb.from("minutas").update({estado:(count||0)>=M.socios.length?"firmada":"borrador",actualizado_en:firmado_en}).eq("id",M.id);
+  load(); return true;
+}
+async function quitarFirma(sid){
+  if(!confirm("¿Quitar esta firma?"))return;
+  await sb.from("minuta_firmas").delete().eq("minuta_id",M.id).eq("socio_id",sid);
+  await sb.from("minutas").update({estado:"borrador"}).eq("id",M.id);
+  load();
+}
+
+// ── Eventos (delegación) ────────────────────────────────────────
+const shell=$("#shell");
+shell.addEventListener("click",e=>{
+  const vb=e.target.closest("button[data-vote]");
+  if(vb){toggleVoto(vb.dataset.vote,vb.dataset.socio);return;}
+  const nt=e.target.closest("button[data-note]");
+  if(nt){const id=nt.dataset.note;openNotes.has(id)?openNotes.delete(id):openNotes.add(id);render();return;}
+  const da=e.target.closest("button[data-delac]"); if(da){delAcuerdo(da.dataset.delac);return;}
+  const ds=e.target.closest("button[data-delsec]"); if(ds){delSeccion(ds.dataset.delsec);return;}
+  const sg=e.target.closest("button[data-sign]"); if(sg){openFirmaModal(sg.dataset.sign);return;}
+  const us=e.target.closest("button[data-unsign]"); if(us){quitarFirma(us.dataset.unsign);return;}
+});
+shell.addEventListener("focusin",e=>{if(e.target.matches("input,textarea"))busyEditing=true;});
+shell.addEventListener("focusout",e=>{
+  const t=e.target;
+  if(t.matches("input,textarea")){
+    busyEditing=false;
+    if(t.dataset.txt)saveAcuerdo(t.dataset.txt,{texto:t.value});
+    else if(t.dataset.sub)saveAcuerdo(t.dataset.sub,{subtexto:t.value||null});
+    else if(t.dataset.notetext)saveAcuerdo(t.dataset.notetext,{nota:t.value});
+    else if(t.dataset.sn)saveSeccion(t.dataset.sn,{numero:t.value});
+    else if(t.dataset.st)saveSeccion(t.dataset.st,{titulo:t.value});
+    else if(t.dataset.snote)saveSeccion(t.dataset.snote,{nota:t.value});
+    if(pendingReload){pendingReload=false;load();}
+  }
+});
+
+$("#editBtn").addEventListener("click",()=>{editMode=!editMode;$("#editBtn").textContent=editMode?"✓ Listo":"✎ Editar acuerdos";$("#editBtn").classList.toggle("active",editMode);render();});
+$("#pdfBtn").addEventListener("click",()=>window.print());
+$("#fecha").addEventListener("change",e=>saveFecha(e.target.value));
+$("#title").addEventListener("dblclick",()=>{
+  const cur=M.titulo; const v=prompt("Título de la minuta:",cur); if(v!=null&&v.trim()){ $("#title").textContent=v.trim(); saveTitulo(v.trim()); }
+});
+
+// ── Modal de firma ──────────────────────────────────────────────
+function openFirmaModal(sid){
+  const socio=M.socios.find(s=>s.id===sid); if(!socio)return;
+  let tipo="texto", canvas=null, ctx=null, drawing=false, dirty=false, last=null;
+  const root=$("#modalRoot");
+  root.innerHTML=`<div class="modal-bg"><div class="modal" role="dialog" aria-modal="true">
+    <div><h3>Firmar como ${esc(socio.nombre)}</h3><p>Elige cómo quieres dejar tu firma de conformidad.</p></div>
+    <div class="seg"><button data-t="texto" class="on">Escribir mi nombre</button><button data-t="dibujo">Firma a mano alzada</button></div>
+    <div class="field"><label>Nombre completo</label><input id="fNombre" value="${esc(socio.nombre)}" placeholder="Tu nombre"></div>
+    <div id="canvasHolder" style="display:none"><div class="canvas-wrap"><canvas id="fCanvas"></canvas><div class="canvas-hint" id="cHint">Firma con el dedo o el mouse aquí</div></div></div>
+    <div class="modal-actions">
+      <button class="btn sm spacer" id="fClear" style="display:none">Borrar trazo</button>
+      <button class="btn" id="fCancel">Cancelar</button>
+      <button class="btn primary" id="fOk">Firmar</button>
+    </div>
+  </div></div>`;
+
+  const close=()=>{root.innerHTML="";};
+  root.querySelector(".modal-bg").addEventListener("click",e=>{if(e.target===e.currentTarget)close();});
+  $("#fCancel").onclick=close;
+
+  function setupCanvas(){
+    canvas=$("#fCanvas"); const rect=canvas.getBoundingClientRect(); const dpr=window.devicePixelRatio||1;
+    canvas.width=Math.round(rect.width*dpr); canvas.height=Math.round(rect.height*dpr);
+    ctx=canvas.getContext("2d"); ctx.scale(dpr,dpr); ctx.lineWidth=2.4; ctx.lineCap="round"; ctx.lineJoin="round"; ctx.strokeStyle="#1a1a2e";
+    const pos=e=>{const r=canvas.getBoundingClientRect();const p=e.touches?e.touches[0]:e;return{x:p.clientX-r.left,y:p.clientY-r.top};};
+    const down=e=>{e.preventDefault();drawing=true;last=pos(e);};
+    const move=e=>{if(!drawing)return;e.preventDefault();const p=pos(e);ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;if(!dirty){dirty=true;$("#cHint").style.display="none";}};
+    const up=()=>{drawing=false;};
+    canvas.addEventListener("pointerdown",down);canvas.addEventListener("pointermove",move);
+    canvas.addEventListener("pointerup",up);canvas.addEventListener("pointerleave",up);
+  }
+  root.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{
+    tipo=b.dataset.t;
+    root.querySelectorAll(".seg button").forEach(x=>x.classList.toggle("on",x===b));
+    const holder=$("#canvasHolder"); const clear=$("#fClear");
+    if(tipo==="dibujo"){holder.style.display="";clear.style.display="";if(!canvas)setupCanvas();}
+    else{holder.style.display="none";clear.style.display="none";}
+  });
+  $("#fClear").onclick=()=>{if(ctx){ctx.clearRect(0,0,canvas.width,canvas.height);dirty=false;$("#cHint").style.display="";}};
+  $("#fOk").onclick=async()=>{
+    const nombre=$("#fNombre").value.trim(); if(!nombre){toast("Escribe tu nombre");return;}
+    let imagen=null;
+    if(tipo==="dibujo"){if(!dirty){toast("Dibuja tu firma primero");return;}imagen=canvas.toDataURL("image/png");}
+    $("#fOk").disabled=true;$("#fOk").textContent="Firmando…";
+    const ok=await firmar(sid,tipo,nombre,imagen);
+    if(ok){close();toast("Firma registrada");}else{$("#fOk").disabled=false;$("#fOk").textContent="Firmar";}
+  };
+}
+
+// ── Tiempo real (Supabase Realtime) ─────────────────────────────
+function subscribe(){
+  sb.channel("minuta-"+SLUG)
+    .on("postgres_changes",{event:"*",schema:"public",table:"minuta_votos"},reloadSafe)
+    .on("postgres_changes",{event:"*",schema:"public",table:"minuta_acuerdos"},reloadSafe)
+    .on("postgres_changes",{event:"*",schema:"public",table:"minuta_secciones"},reloadSafe)
+    .on("postgres_changes",{event:"*",schema:"public",table:"minuta_firmas"},reloadSafe)
+    .on("postgres_changes",{event:"*",schema:"public",table:"minutas"},reloadSafe)
+    .subscribe(st=>{const s=$("#sync");if(!s)return;s.className="sync "+(st==="SUBSCRIBED"?"live":"err");});
+}
+
+// ── Arranque ────────────────────────────────────────────────────
+(async()=>{ await load(); subscribe(); })();
+</script>
+</body>
+</html>
